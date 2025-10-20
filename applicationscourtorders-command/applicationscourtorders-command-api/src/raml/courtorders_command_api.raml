@@ -1,0 +1,78 @@
+  #%RAML 0.8
+title: Court Orders Command API
+version: 1.0
+baseUri:  http://localhost:8080/applicationscourtorders-command-api/command/api/rest/courtorders
+
+/court-order:
+  post:
+      description:  |
+        Request Create court order
+        ...
+        (mapping):
+            requestType: application/vnd.courtorders.create-court-order+json
+            name: courtorders.create-court-order
+        (mapping):
+          requestType: application/vnd.courtorders.update-court-order-validity+json
+          name: courtorders.update-court-order-validity
+        ...
+      body:
+        application/vnd.courtorders.create-court-order+json:
+            example:
+             !include json/courtorders.create-court-order.json
+            schema:
+             !include json/schema/courtorders.create-court-order.json
+        application/vnd.courtorders.update-court-order-validity+json:
+          example:
+            !include json/courtorders.update-court-order-validity.json
+          schema:
+            !include json/schema/courtorders.update-court-order-validity.json
+      responses:
+            202:
+                description: OK
+
+/court-order/{courtOrderId}:
+  post:
+    description:  |
+      Request Remove court order
+      ...
+      (mapping):
+          requestType: application/vnd.courtorders.remove-court-order+json
+          name: courtorders.remove-court-order
+      ...
+    body:
+      application/vnd.courtorders.remove-court-order+json:
+        example:
+          !include json/courtorders.remove-court-order.json
+        schema:
+          !include json/schema/courtorders.remove-court-order.json
+    responses:
+      202:
+        description: OK
+
+
+/court-order/patch:
+  post:
+    description:  |
+      Request update court order for judicial child results
+      ...
+      (mapping):
+          requestType: application/vnd.courtorders.patch-update-judicial-child-results+json
+          name: courtorders.patch-update-judicial-child-results
+      (mapping):
+          requestType: application/vnd.courtorders.patch-update-judicial-child-results-v2+json
+          name: courtorders.patch-update-judicial-child-results-v2
+      ...
+    body:
+      application/vnd.courtorders.patch-update-judicial-child-results+json:
+        example:
+          !include json/courtorders.patch-update-judicial-child-results.json
+        schema:
+          !include json/schema/courtorders.patch-update-judicial-child-results.json
+      application/vnd.courtorders.patch-update-judicial-child-results-v2+json:
+        example:
+          !include json/courtorders.patch-update-judicial-child-results-v2.json
+        schema:
+          !include json/schema/courtorders.patch-update-judicial-child-results-v2.json
+    responses:
+      202:
+        description: OK

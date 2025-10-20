@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://moj.gov.uk/cpp/courtorders/command/update-court-order-validity.json",
+  "type": "object",
+  "properties": {
+    "courtOrderId": {
+      "description": "court order id used for changing the validity",
+      "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/uuid"
+    },
+    "applicationId": {
+      "description": "application id used for changing the validity",
+      "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/uuid"
+    },
+    "newEndDate": {
+      "description": "The new date that the order must completes, typically calculated based on a duration result.  The absence of an end date determines that the order remains active indefinately",
+      "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/datePattern"
+    },
+    "resetToOriginalEndDate": {
+      "description": "Reset the date to first recorded endDate.",
+      "type": "boolean"
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "newEndDate","applicationId"
+      ]
+    },
+    {
+      "required": [
+        "resetToOriginalEndDate","applicationId"
+      ]
+    }
+  ],
+  "additionalProperties": false
+}

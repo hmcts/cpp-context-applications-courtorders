@@ -1,0 +1,50 @@
+package uk.gov.moj.cpp.courtorders.queryapi.accesscontrol;
+
+import uk.gov.moj.cpp.accesscontrol.drools.Outcome;
+import uk.gov.moj.cpp.accesscontrol.drools.Action;
+import java.util.ArrayList;
+
+global uk.gov.moj.cpp.accesscontrol.common.providers.UserAndGroupProvider userAndGroupProvider;
+global uk.gov.moj.cpp.accesscontrol.refdata.providers.RbacProvider rbacProvider;
+
+rule "applicationscourtorders - Query - API - courtorders.query.court-order-by-defendant-id"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "applicationscourtorders.query.court-order-by-defendant-id");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "System Users", "Listing Officers", "Court Clerks", "Legal Advisers", "Prison Admin", "Probation Admin", "Police Admin", "Victims & Witness Care Admin",
+    "Youth Offending Service Admin", "Legal Aid Agency Admin", "Probation Admin", "Court Associate", "Eject Case Group", "Court Administrators", "Second Line Support", "DJMC", "Deputies", "Magistrates", "Recorders", "Judge", "NCES",
+    "Crown Court Admin","District Judge", "Judiciary", "Defence Lawyers", "Advocates", "CPS", "Non Police Prosecutors", "Non CPS Prosecutors"))
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "applicationscourtorders - Query - API - courtorders.query.court-order-by-defendant-id-and-offence-date"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "applicationscourtorders.query.court-order-by-defendant-id-and-offence-date");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "System Users", "Listing Officers", "Court Clerks", "Legal Advisers", "Prison Admin", "Probation Admin", "Police Admin", "Victims & Witness Care Admin",
+    "Youth Offending Service Admin", "Legal Aid Agency Admin", "Probation Admin", "Court Associate", "Eject Case Group", "Court Administrators", "Second Line Support", "DJMC", "Deputies", "Magistrates", "Recorders", "Judge", "NCES",
+    "Crown Court Admin","District Judge", "Judiciary", "Defence Lawyers", "Advocates", "CPS", "Non Police Prosecutors", "Non CPS Prosecutors"))
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "applicationscourtorders - Query - API - courtorders.query.court-order-by-case-and-defendant-id"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "applicationscourtorders.query.court-order-by-case-and-defendant-id");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "System Users", "Listing Officers", "Court Clerks", "Legal Advisers", "Prison Admin", "Probation Admin", "Police Admin", "Victims & Witness Care Admin",
+    "Youth Offending Service Admin", "Legal Aid Agency Admin", "Probation Admin", "Court Associate", "Eject Case Group", "Non Police Prosecutors"))
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "applicationscourtorders - Query - API - courtorders.query.court-order-by-hearing-and-defendant-id"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "applicationscourtorders.query.court-order-by-hearing-and-defendant-id");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "System Users", "Listing Officers", "Court Clerks", "Legal Advisers", "Prison Admin", "Probation Admin", "Police Admin", "Victims & Witness Care Admin",
+    "Youth Offending Service Admin", "Legal Aid Agency Admin", "Probation Admin", "Court Associate", "Eject Case Group", "Magistrates", "Non Police Prosecutors"))
+  then
+    $outcome.setSuccess(true);
+end

@@ -1,0 +1,65 @@
+{
+  "id": "7bde207f-ce57-49e5-b961-7577831171fb",
+  "masterDefendantId": "32bcbaa6-ff56-40cb-8a71-408feb5077cc",
+  "judicialResultTypeId": "f1fa0821-29be-4ec5-ad56-13eafe93021d",
+  "label": "Breach order",
+  "orderDate": "2020-12-12",
+  "startDate": "2020-04-12",
+  "endDate": "2020-04-20",
+  "orderingCourt": {
+    "address": {
+      "address1": "QEII Law Courts",
+      "address2": "Derby Square",
+      "address3": "Liverpool",
+      "postcode": "L2 1XA"
+    },
+    "courtHearingLocation": "C05LV00",
+    "id": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+    "name": "Liverpool Crown Court",
+    "psaCode": 1810,
+    "roomId": "fbe3ca1a-6be6-3bd5-86e8-fc879aa5e3e7",
+    "roomName": "Crown Court 5-3",
+    "welshName": "Llys Y Goron Lerpwl"
+  },
+  "orderingHearingId": "%HEARING_ID%",
+  "isSJPOrder": false,
+  "canBeSubjectOfBreachProceedings": true,
+  "canBeSubjectOfVariationProceedings": false,
+  "courtOrderOffences": [
+    
+    {
+      "offence": {
+        "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+        "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+        "wording": "No Travel Card",
+        "wordingWelsh": "No Travel Card In Welsh",
+        "startDate": "2018-01-01",
+        "endDate": "2018-01-01",
+        "arrestDate": "2018-01-01",
+        "chargeDate": "2018-01-01",
+        "orderIndex": 1,
+        "offenceCode": "TTH105HY",
+        "offenceTitle": "ROBBERY",
+        "count": 0,
+        "notifiedPlea": {
+          "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+          "notifiedPleaDate": "2018-04-01",
+          "notifiedPleaValue": "NOTIFIED_GUILTY"
+        },
+        "offenceFacts": {
+          "vehicleRegistration": "AA12345",
+          "alcoholReadingAmount": 111,
+          "alcoholReadingMethodCode": "2222"
+        },
+        "offenceDateCode": 4
+      },
+      "code": "TTH105HY",
+      "prosecutionCaseId": "75d6bf49-0fed-4cdb-b47c-1951f740431b",
+      "prosecutionCaseIdentifier": {
+        "prosecutionAuthorityCode": "TFL",
+        "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+        "prosecutionAuthorityReference": "c3f7f2ca"
+      }
+    }
+  ]
+}

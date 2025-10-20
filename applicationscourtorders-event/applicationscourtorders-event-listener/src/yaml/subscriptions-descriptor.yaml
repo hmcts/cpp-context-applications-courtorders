@@ -1,0 +1,20 @@
+subscriptions_descriptor:
+  spec_version: 1.0.0
+  service: applicationscourtorders
+  service_component: EVENT_LISTENER
+  subscriptions:
+    - name: event listener subscription
+      events:
+        - name: applicationscourtorders.event.court-order-requested
+          schema_uri: http://justice.gov.uk/core/courts/court-order-requested.json
+
+        - name: applicationscourtorders.event.court-order-removed
+          schema_uri: http://justice.gov.uk/core/courts/court-order-removed.json
+
+        - name: applicationscourtorders.event.court-order-validity-updated
+          schema_uri: http://justice.gov.uk/core/courts/court-order-validity-updated.json
+
+        - name:  applicationscourtorders.event.judicial-child-results-updated
+          schema_uri: http://justice.gov.uk/core/courts/judicial-child-results-updated.json,
+
+      event_source_name: applicationscourtorders

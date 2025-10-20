@@ -1,0 +1,5 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://moj.gov.uk/cpp/courtorders/command/create-court-order.json",
+  "$ref": "http://justice.gov.uk/core/courts/courtOrder.json"
+}

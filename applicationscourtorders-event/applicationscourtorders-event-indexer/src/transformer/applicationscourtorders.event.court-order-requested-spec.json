@@ -1,0 +1,7 @@
+{
+  "operations": [
+    {
+      "operation": "uk.gov.moj.cpp.courtorders.indexer.transformer.CourtOrderRequestedTransformer"
+    }
+  ]
+}

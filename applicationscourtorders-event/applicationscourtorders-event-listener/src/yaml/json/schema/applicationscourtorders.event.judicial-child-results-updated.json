@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/core/courts/judicial-child-results-updated.json",
+  "type": "object",
+  "properties": {
+    "courtOrderId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "isUnpaidWork": {
+      "type": "boolean"
+    },
+    "expiryDate": {
+      "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/datePattern"
+    },
+    "judicialChildResults":{
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/judicialChildResult"
+      }
+    }
+  },
+  "required": [
+    "courtOrderId",
+    "isUnpaidWork",
+    "expiryDate",
+    "judicialChildResults"
+  ],
+  "definitions": {
+    "judicialChildResult" :{
+      "type": "object",
+      "properties": {
+        "judicialResultId": {
+          "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/uuid"
+        },
+        "judicialResultTypeId": {
+          "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/uuid"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "judicialResultId",
+        "judicialResultTypeId",
+        "label"
+      ],
+      "additionalProperties": false
+    }
+
+  },
+  "additionalProperties": false
+}

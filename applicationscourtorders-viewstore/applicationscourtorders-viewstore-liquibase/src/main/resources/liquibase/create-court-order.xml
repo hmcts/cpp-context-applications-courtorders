@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+    <changeSet id="create-court-order" author="cpp.context.progression">
+        <createTable tableName="court_order">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="court_order_id" type="UUID"/>
+            <column name="defendant_id" type="UUID"/>
+            <column name="hearing_id" type="UUID"/>
+            <column name="sitting_date" type="DATETIME"/>
+            <column name="payload" type="TEXT"/>
+            <column name="is_removed" type="BOOLEAN" defaultValue="false"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

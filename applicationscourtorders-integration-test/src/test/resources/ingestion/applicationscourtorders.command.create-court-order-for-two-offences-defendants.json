@@ -1,0 +1,100 @@
+{
+  "id": "COURT_ORDER_ID",
+  "masterDefendantId": "MASTER_DEFENDANT_ID",
+  "defendantIds": [
+    "DEFENDANT_ID_1",
+    "DEFENDANT_ID_2"
+  ],
+  "judicialResultTypeId": "f1fa0821-29be-4ec5-ad56-13eafe93021d",
+  "label": "Breach order",
+  "orderDate": "2020-12-12",
+  "startDate": "COURT_ORDER_START_DATE",
+  "endDate": "COURT_ORDER_END_DATE",
+  "orderingCourt": {
+    "address": {
+      "address1": "QEII Law Courts",
+      "address2": "Derby Square",
+      "address3": "Liverpool",
+      "postcode": "L2 1XA"
+    },
+    "courtHearingLocation": "C05LV00",
+    "id": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+    "name": "Liverpool Crown Court",
+    "psaCode": 1810,
+    "roomId": "fbe3ca1a-6be6-3bd5-86e8-fc879aa5e3e7",
+    "roomName": "Crown Court 5-3",
+    "welshName": "Llys Y Goron Lerpwl"
+  },
+  "orderingHearingId": "c34b12a5-5748-45b6-b96c-7d3d1643d864",
+  "isSJPOrder": false,
+  "canBeSubjectOfBreachProceedings": true,
+  "canBeSubjectOfVariationProceedings": false,
+  "courtOrderOffences": [
+    {
+      "offence": {
+        "id": "OFFENCE_ID_1",
+        "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+        "wording": "No Travel Card",
+        "wordingWelsh": "No Travel Card In Welsh",
+        "startDate": "2018-01-01",
+        "endDate": "2018-01-01",
+        "arrestDate": "2018-01-01",
+        "chargeDate": "2018-01-01",
+        "orderIndex": 1,
+        "offenceCode": "OFFENCE_CODE_1",
+        "offenceTitle": "ROBBERY",
+        "count": 0,
+        "notifiedPlea": {
+          "offenceId": "OFFENCE_ID_1",
+          "notifiedPleaDate": "2018-04-01",
+          "notifiedPleaValue": "NOTIFIED_GUILTY"
+        },
+        "offenceFacts": {
+          "vehicleRegistration": "AA12345",
+          "alcoholReadingAmount": 111,
+          "alcoholReadingMethodCode": "2222"
+        },
+        "offenceDateCode": 4
+      },
+      "prosecutionCaseId": "PROSECUTION_CASE_ID",
+      "prosecutionCaseIdentifier": {
+        "prosecutionAuthorityCode": "TFL",
+        "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+        "prosecutionAuthorityReference": "c3f7f2ca"
+      }
+    },
+    {
+      "offence": {
+        "id": "OFFENCE_ID_2",
+        "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+        "wording": "No Travel Card",
+        "wordingWelsh": "No Travel Card In Welsh",
+        "startDate": "2018-01-01",
+        "endDate": "2018-01-01",
+        "arrestDate": "2018-01-01",
+        "chargeDate": "2018-01-01",
+        "orderIndex": 1,
+        "offenceCode": "OFFENCE_CODE_2",
+        "offenceTitle": "ROBBERY",
+        "count": 0,
+        "notifiedPlea": {
+          "offenceId": "OFFENCE_ID_2",
+          "notifiedPleaDate": "2018-04-01",
+          "notifiedPleaValue": "NOTIFIED_GUILTY"
+        },
+        "offenceFacts": {
+          "vehicleRegistration": "AA12345",
+          "alcoholReadingAmount": 111,
+          "alcoholReadingMethodCode": "2222"
+        },
+        "offenceDateCode": 4
+      },
+      "prosecutionCaseId": "PROSECUTION_CASE_ID",
+      "prosecutionCaseIdentifier": {
+        "prosecutionAuthorityCode": "TFL",
+        "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+        "prosecutionAuthorityReference": "c3f7f2ca"
+      }
+    }
+  ]
+}

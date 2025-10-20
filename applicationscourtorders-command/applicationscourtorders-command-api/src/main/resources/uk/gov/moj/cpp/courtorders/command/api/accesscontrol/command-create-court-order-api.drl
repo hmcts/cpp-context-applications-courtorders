@@ -1,0 +1,54 @@
+package uk.gov.moj.cpp.courtorders.command.api.accesscontrol;
+
+import uk.gov.moj.cpp.accesscontrol.drools.Outcome;
+import uk.gov.moj.cpp.accesscontrol.drools.Action;
+global uk.gov.moj.cpp.accesscontrol.common.providers.UserAndGroupProvider userAndGroupProvider;
+global uk.gov.moj.cpp.accesscontrol.refdata.providers.RbacProvider rbacProvider;
+
+rule "Command - create court order rule"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "courtorders.create-court-order");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "Legal Advisers","Listing Officers" ,"Court Clerks", "Crown Court Admin", "Court Administrators", "System Users", "Defence Users", "District Judge", "Court Associate", "Probation Admin", "Second Line Support", "Magistrates"))
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - remove court order rule"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "courtorders.remove-court-order");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "Legal Advisers","Listing Officers" ,"Court Clerks", "Crown Court Admin", "Court Administrators", "System Users", "Defence Users", "District Judge", "Court Associate", "Probation Admin", "Second Line Support", "Magistrates"))
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - update court order rule"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "courtorders.update-court-order-validity");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "Legal Advisers","Listing Officers" ,"Court Clerks", "Crown Court Admin", "Court Administrators", "System Users", "Defence Users", "District Judge", "Court Associate", "Probation Admin", "Second Line Support", "Magistrates"))
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - patch update judicial child results rule"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "courtorders.patch-update-judicial-child-results");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "System Users"))
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - patch update judicial child results rule v2"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "courtorders.patch-update-judicial-child-results-v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, "System Users"))
+  then
+    $outcome.setSuccess(true);
+end
+
+
+

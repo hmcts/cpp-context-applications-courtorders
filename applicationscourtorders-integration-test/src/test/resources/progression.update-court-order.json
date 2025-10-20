@@ -1,0 +1,5 @@
+{
+  "courtOrderId": "%COURT_ORDER_ID%",
+  "applicationId": "%APPLICATION_ID%",
+  "newEndDate": "%END_DATE%"
+}

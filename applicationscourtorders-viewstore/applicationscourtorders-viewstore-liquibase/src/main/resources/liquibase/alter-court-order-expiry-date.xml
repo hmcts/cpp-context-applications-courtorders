@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+    <changeSet id="alter-court-order-expiry-date" author="yilmaz">
+        <addColumn tableName="court_order">
+            <column name="expiry_date" type="date">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <sql>
+            UPDATE court_order
+            SET expiry_date = (payload::json ->> 'endDate')::date;
+            ALTER TABLE court_order
+                ALTER COLUMN expiry_date SET NOT NULL;
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>
+
+
+
