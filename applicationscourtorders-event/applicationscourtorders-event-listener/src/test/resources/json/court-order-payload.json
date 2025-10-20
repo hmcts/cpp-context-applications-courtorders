@@ -1,0 +1,81 @@
+{
+  "canBeSubjectOfBreachProceedings": true,
+  "canBeSubjectOfVariationProceedings": true,
+  "courtOrderOffences": [
+    {
+      "offence": {
+        "arrestDate": "2024-01-01",
+        "chargeDate": "2023-12-30",
+        "count": 0,
+        "endorsableFlag": false,
+        "id": "be40c8e2-bf53-4e48-822a-92a874c6b6b7",
+        "isDisposed": true,
+        "listingNumber": 1,
+        "maxPenalty": "Indictable only",
+        "modeOfTrial": "Indictable",
+        "offenceCode": "TH68023",
+        "offenceDateCode": 1,
+        "offenceDefinitionId": "6795cbe7-3e0f-3f6a-b59d-29a87a9d6f8d",
+        "offenceLegislation": "Contrary to section 8(1) of the Theft Act 1968.",
+        "offenceLegislationWelsh": "Yn groes i adran 8(1) Deddf Dwyn 1968.",
+        "offenceTitle": "Robbery",
+        "offenceTitleWelsh": "Ysbeilio/Lladrad",
+        "orderIndex": 1,
+        "startDate": "2023-11-28",
+        "wording": "Robbery."
+      },
+      "prosecutionCaseId": "128d4af4-b360-4d60-85c4-5765552429ad",
+      "prosecutionCaseIdentifier": {
+        "address": {
+          "address1": "Criminal Justice Department",
+          "address2": "Derbyshire Constabulary",
+          "address3": "Butterley Hall",
+          "address4": "Ripley",
+          "address5": "Derby",
+          "postcode": "DE5 3RS"
+        },
+        "contact": {
+          "primaryEmail": "criminaldataderbyshire@derbyshire.police.uk"
+        },
+        "majorCreditorCode": "PO30",
+        "prosecutionAuthorityCode": "DERPF",
+        "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+        "prosecutionAuthorityName": "Derbyshire Police",
+        "prosecutionAuthorityOUCode": "0300000",
+        "caseURN": "28NR5436686"
+      }
+    }
+  ],
+  "defendantIds": [
+    "e7174975-5359-4cc2-8faa-d18a1750995e"
+  ],
+  "endDate": "2031-12-13",
+  "id": "d680f07e-df68-4891-aafd-b7d2595d4da4",
+  "isSJPOrder": false,
+  "judicialResultTypeId": "5679e5b7-0ca8-4d2a-ba80-7a50025fb589",
+  "label": "Suspended sentence order - detention in a young offender institution",
+  "masterDefendantId": "e7174975-5359-4cc2-8faa-d18a1750995e",
+  "orderDate": "2024-12-13",
+  "orderingCourt": {
+    "address": {
+      "address1": "176A Lavender Hill",
+      "address2": "London",
+      "address3": "",
+      "address4": "",
+      "address5": "",
+      "postcode": "SW11 1JU"
+    },
+    "code": "B01LY00",
+    "courtHearingLocation": "B01LY01",
+    "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+    "lja": {
+      "ljaCode": "2577",
+      "ljaName": "South West London Magistrates' Court"
+    },
+    "name": "Lavender Hill Magistrates' Court",
+    "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+    "roomName": "Courtroom 01"
+  },
+  "orderingHearingId": "b5c3e46e-3f24-40b8-9874-882ca74bd3bd",
+  "startDate": "2024-12-13"
+}

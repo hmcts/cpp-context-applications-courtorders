@@ -1,0 +1,112 @@
+#%RAML 0.8
+title: CourtOrders Query API
+baseUri: http://localhost:8080/applicationscourtorders-query-api/query/api/rest/courtorders
+protocols: [ HTTP, HTTPS ]
+
+/court-order/defendant/{defendantId}:
+  uriParameters:
+        defendantId:
+          description: master defendant id
+          type: string
+  get:
+      description: |
+        Return all the court order for defendant id
+        ...
+        (mapping):
+            responseType: application/vnd.courtorders.query.court-order-by-defendant-id+json
+            name: applicationscourtorders.query.court-order-by-defendant-id
+        ...
+      queryParameters:
+        hearingDate:
+          description: hearing date
+          type: string
+          required: false
+      responses:
+            200:
+                description: OK
+                body:
+                  application/vnd.courtorders.query.court-order-by-defendant-id+json:
+                    example: !include json/courtorders.query.court-order-by-defendant-id.json
+                    schema: !include json/schema/courtorders.query.court-order-by-defendant-id.json
+
+
+/court-order/defendant-id-and-offence-date:
+  get:
+    description: |
+      Return all the court order for defendant id and offence date
+      ...
+      (mapping):
+          responseType: application/vnd.courtorders.query.court-order-by-defendant-id-and-offence-date+json
+          name: applicationscourtorders.query.court-order-by-defendant-id-and-offence-date
+      ...
+    queryParameters:
+      hearingDate:
+        type: string
+        required: true
+        example: 2026-05-03
+      filterCriteria:
+        description: master defendantIds and offenceDates
+        type: string
+        required: true
+        example: b22f0cb3-6499-4843-b30c-dc129038552f:2025-05-03,24a83893-25aa-4f7c-9289-088d487c33ac:2025-06-07
+    responses:
+      200:
+          description: OK
+          body:
+            application/vnd.courtorders.query.court-order-by-defendant-id-and-offence-date+json:
+              example: !include json/courtorders.query.court-order-by-defendant-id-and-offence-date.json
+              schema: !include json/schema/courtorders.query.court-order-by-defendant-id-and-offence-date.json
+
+
+/court-order/hearing/{hearingId}/defendant/{defendantId}:
+  uriParameters:
+        hearingId:
+          description: hearing id
+          type: string
+        defendantId:
+          description: master defendant id
+          type: string
+  get:
+      description: |
+        Return all the court order for hearing and defendant id
+        ...
+        (mapping):
+            responseType: application/vnd.courtorders.query.court-order-by-hearing-and-defendant-id+json
+            name: applicationscourtorders.query.court-order-by-hearing-and-defendant-id
+        ...
+      queryParameters:
+            sittingDate:
+              description: sitting date
+              type: string
+              required: true
+      responses:
+            200:
+                description: OK
+                body:
+                  application/vnd.courtorders.query.court-order-by-hearing-and-defendant-id+json:
+                    example: !include json/courtorders.query.court-order-by-hearing-and-defendant-id.json
+                    schema: !include json/schema/courtorders.query.court-order-by-hearing-and-defendant-id.json
+
+/court-order/caseId/{caseId}/defendant/{defendantId}:
+  uriParameters:
+        caseId:
+          description: caseId
+          type: string
+        defendantId:
+          description: defendantId
+          type: string
+  get:
+      description: |
+        Return all the court order for case id and defendant id
+        ...
+        (mapping):
+            responseType: application/vnd.courtorders.query.court-order-by-case-and-defendant-id+json
+            name: applicationscourtorders.query.court-order-by-case-and-defendant-id
+        ...
+      responses:
+            200:
+                description: OK
+                body:
+                  application/vnd.courtorders.query.court-order-by-case-and-defendant-id+json:
+                    example: !include json/courtorders.query.court-order-by-case-and-defendant-id.json
+                    schema: !include json/schema/courtorders.query.court-order-by-case-and-defendant-id.json

@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Response schema for court order",
+  "id": "http://justice.gov.uk/courtorders/courts/court-order/court-order-by-defendant-id-and-offence-date.json",
+  "type": "object",
+  "properties": {
+    "courtOrders": {
+      "type": "array",
+      "$ref": "http://justice.gov.uk/courtorders/query/court-order.json"
+    }
+  }
+}

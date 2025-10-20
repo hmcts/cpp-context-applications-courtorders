@@ -1,0 +1,28 @@
+#%RAML 0.8
+title: Court Orders Command handler
+version: 1.0
+baseUri:  message://command/handler/message/applicationscourtorders
+
+
+/applicationscourtorders.handler.command:
+  post:
+      body:
+        application/vnd.courtorders.command.create-court-order+json:
+          example:  !include json/courtorders.command.create-court-order.json
+          schema: !include json/schema/courtorders.command.create-court-order.json
+
+        application/vnd.courtorders.command.remove-court-order+json:
+          example: !include json/courtorders.command.remove-court-order.json
+          schema: !include json/schema/courtorders.command.remove-court-order.json
+
+        application/vnd.courtorders.command.update-court-order-validity+json:
+          example: !include json/courtorders.update-court-order-validity.json
+          schema: !include json/schema/courtorders.update-court-order-validity.json
+
+        application/vnd.courtorders.command.patch-update-judicial-child-results+json:
+          example: !include json/courtorders.patch-update-judicial-child-results.json
+          schema: !include json/schema/courtorders.patch-update-judicial-child-results.json
+
+        application/vnd.courtorders.command.patch-update-judicial-child-results-v2+json:
+          example: !include json/courtorders.patch-update-judicial-child-results-v2.json
+          schema: !include json/schema/courtorders.patch-update-judicial-child-results-v2.json

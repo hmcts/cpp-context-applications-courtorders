@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>applicationscourtorders-parent</artifactId>
+        <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
+        <version>17.0.64-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>applicationscourtorders-event</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>applicationscourtorders-event-listener</module>
+        <module>applicationscourtorders-event-processor</module>
+        <module>applicationscourtorders-event-indexer</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
+            <artifactId>applicationscourtorders-event-sources</artifactId>
+            <classifier>yaml</classifier>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>uk.gov.justice.framework-generators</groupId>
+                <artifactId>messaging-adapter-generator-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
+                        <artifactId>applicationscourtorders-event-sources</artifactId>
+                        <classifier>yaml</classifier>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>uk.gov.justice.framework-generators</groupId>
+                <artifactId>messaging-client-generator-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
+                        <artifactId>applicationscourtorders-event-sources</artifactId>
+                        <classifier>yaml</classifier>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

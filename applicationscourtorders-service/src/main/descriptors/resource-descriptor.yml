@@ -1,0 +1,59 @@
+---
+resource_descriptor:
+  spec_version: '1.0.0'
+  version: '${project.version}'
+
+  resources:
+    - name: java:/app/applicationscourtorders-service/DS.eventstore
+      type: xa-datasource
+      setup:
+        - type: liquibase
+          maven:
+            groupId: uk.gov.justice.services
+            artifactId: event-repository-liquibase
+            type: jar
+            version: '${cpp.framework.version}'
+        - type: liquibase
+          maven:
+            groupId: uk.gov.justice.services
+            artifactId: aggregate-snapshot-repository-liquibase
+            type: jar
+            version: '${project.version}'
+
+    - name: java:/DS.applicationscourtorders
+      type: xa-datasource
+      setup:
+        - type: liquibase
+          maven:
+            groupId: uk.gov.justice.services
+            artifactId: event-buffer-liquibase
+            type: jar
+            version: '${cpp.framework.version}'
+        - type: liquibase
+          maven:
+            groupId: uk.gov.moj.cpp.applications.courtorders
+            artifactId: applicationscourtorders-viewstore-liquibase
+            type: jar
+            version: '${project.version}'
+
+    - name: applicationscourtorders.handler.command
+      type: queue
+    - name: applicationscourtorders.event
+      type: topic
+    - name: public.event
+      type: topic
+
+  services:
+    # applicationscourtorders provides these service mappings
+    - name: 'applicationscourtorders-service'
+      id: 'applicationscourtorders_service'
+      target: '/applicationscourtorders-service'
+      map:
+        - '/applicationscourtorders-command-api'
+        - '/applicationscourtorders-command-handler'
+        - '/applicationscourtorders-event-listener'
+        - '/applicationscourtorders-event-indexer'
+        - '/applicationscourtorders-event-processor'
+        - '/applicationscourtorders-query-api'
+        - '/applicationscourtorders-query-view'
+      matcher: '/applicationscourtorders-[^/]+'

@@ -1,0 +1,11 @@
+subscriptions_descriptor:
+  spec_version: 1.0.0
+  service: applicationscourtorders
+  service_component: EVENT_INDEXER
+  subscriptions:
+    - name: applicationscourtorders event indexer subscription
+      events:
+        - name: applicationscourtorders.event.court-order-requested
+          schema_uri: http://justice.gov.uk/core/courts/court-order-requested.json
+
+      event_source_name: applicationscourtorders

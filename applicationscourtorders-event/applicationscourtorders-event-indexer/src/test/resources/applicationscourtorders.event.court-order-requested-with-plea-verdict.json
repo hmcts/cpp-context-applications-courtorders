@@ -1,0 +1,140 @@
+{
+  "courtOrder": {
+    "canBeSubjectOfBreachProceedings": true,
+    "canBeSubjectOfVariationProceedings": false,
+    "courtOrderOffences": [
+      {
+        "offence": {
+          "arrestDate": "2021-01-01",
+          "chargeDate": "2020-12-28",
+          "convictingCourt": {
+            "code": "B01LY00",
+            "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+            "lja": {
+              "ljaCode": "2577",
+              "ljaName": "South West London Magistrates' Court"
+            },
+            "name": "Lavender Hill Magistrates' Court",
+            "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8"
+          },
+          "convictionDate": "2024-07-18",
+          "count": 0,
+          "endorsableFlag": false,
+          "id": "afe2987e-f76e-4632-8562-144127468330",
+          "indicatedPlea": {
+            "indicatedPleaDate": "2024-07-18",
+            "indicatedPleaValue": "INDICATED_NOT_GUILTY",
+            "offenceId": "afe2987e-f76e-4632-8562-144127468330",
+            "originatingHearingId": "dfb6d090-5830-425a-b479-19de98b63ec5",
+            "source": "IN_COURT"
+          },
+          "isDisposed": true,
+          "listingNumber": 1,
+          "maxPenalty": "Indictable only",
+          "modeOfTrial": "Indictable",
+          "offenceCode": "TH68023",
+          "offenceDateCode": 1,
+          "offenceDefinitionId": "6795cbe7-3e0f-3f6a-b59d-29a87a9d6f8d",
+          "offenceLegislation": "Contrary to section 8(1) of the Theft Act 1968.",
+          "offenceLegislationWelsh": "Yn groes i adran 8(1) Deddf Dwyn 1968.",
+          "offenceTitle": "Robbery",
+          "offenceTitleWelsh": "Ysbeilio/Lladrad",
+          "orderIndex": 1,
+          "plea": {
+            "offenceId": "afe2987e-f76e-4632-8562-144127468330",
+            "originatingHearingId": "dfb6d090-5830-425a-b479-19de98b63ec5",
+            "pleaDate": "2024-07-18",
+            "pleaValue": "NOT_GUILTY"
+          },
+          "reportingRestrictions": [
+            {
+              "id": "5c282249-f8dc-49f0-9efe-556a855ab057",
+              "label": "Section 49 of the Children and Young Persons Act 1933 applies",
+              "orderedDate": "2024-07-18"
+            }
+          ],
+          "startDate": "2019-11-28",
+          "verdict": {
+            "jurors": {
+              "numberOfJurors": 12,
+              "numberOfSplitJurors": 0,
+              "unanimous": true
+            },
+            "lesserOrAlternativeOffence": {
+              "offenceCode": "TH68023",
+              "offenceDefinitionId": "6795cbe7-3e0f-3f6a-b59d-29a87a9d6f8d",
+              "offenceLegislation": "Contrary to section 8(1) of the Theft Act 1968.",
+              "offenceTitle": "Robbery"
+            },
+            "offenceId": "afe2987e-f76e-4632-8562-144127468330",
+            "originatingHearingId": "dfb6d090-5830-425a-b479-19de98b63ec5",
+            "verdictDate": "2024-07-18",
+            "verdictType": {
+              "category": "Guilty",
+              "categoryType": "GUILTY",
+              "cjsVerdictCode": "G",
+              "description": "Found guilty",
+              "id": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+              "sequence": 10,
+              "verdictCode": "G"
+            }
+          },
+          "wording": "Robbery"
+        },
+        "prosecutionCaseId": "248c2914-ea5c-4dff-8206-3de4fdc99c7f",
+        "prosecutionCaseIdentifier": {
+          "address": {
+            "address1": "Criminal Justice Department",
+            "address2": "Derbyshire Constabulary",
+            "address3": "Butterley Hall",
+            "address4": "Ripley",
+            "address5": "Derby",
+            "postcode": "DE5 3RS"
+          },
+          "contact": {
+            "primaryEmail": "criminaldataderbyshire@derbyshire.police.uk"
+          },
+          "majorCreditorCode": "PO30",
+          "prosecutionAuthorityCode": "DERPF",
+          "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+          "prosecutionAuthorityName": "Derbyshire Police",
+          "prosecutionAuthorityOUCode": "0300000",
+          "caseURN": "28DI8748074"
+        }
+      }
+    ],
+    "defendantIds": [
+      "3f34ebf1-03e0-4d1a-a4ac-58e777a6f173"
+    ],
+    "endDate": "2025-07-18",
+    "id": "2f34d539-5d4a-464e-b45d-d80206ab299e",
+    "isSJPOrder": false,
+    "judicialResultTypeId": "554c2622-c1cc-459e-a98d-b7f317ab065c",
+    "label": "Conditional discharge",
+    "masterDefendantId": "3f34ebf1-03e0-4d1a-a4ac-58e777a6f173",
+    "orderDate": "2024-07-18",
+    "orderingCourt": {
+      "address": {
+        "address1": "176A Lavender Hill",
+        "address2": "London",
+        "address3": "",
+        "address4": "",
+        "address5": "",
+        "postcode": "SW11 1JU"
+      },
+      "code": "B01LY00",
+      "courtHearingLocation": "B01LY01",
+      "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+      "lja": {
+        "ljaCode": "2577",
+        "ljaName": "South West London Magistrates' Court"
+      },
+      "name": "Lavender Hill Magistrates' Court",
+      "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+      "roomName": "Courtroom 01"
+    },
+    "orderingHearingId": "dfb6d090-5830-425a-b479-19de98b63ec5",
+    "startDate": "2024-07-18"
+  },
+  "courtOrderId": "2f34d539-5d4a-464e-b45d-d80206ab299e"
+}
