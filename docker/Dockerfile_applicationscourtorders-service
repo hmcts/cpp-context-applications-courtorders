@@ -1,7 +1,6 @@
-#ARG base_image=crmdvrepo01.azurecr.io/wildfly:310122
-
+ARG baseImageUri
 ARG baseImageTag
-FROM crmdvrepo01.azurecr.io/hmcts/wildfly:${baseImageTag}
+FROM ${baseImageUri}:${baseImageTag}
 
 ARG version
 ARG mavenArtifactBaseUrl
