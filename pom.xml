@@ -10,7 +10,7 @@
 
     <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
     <artifactId>applicationscourtorders-parent</artifactId>
-    <version>17.0.8-CIVIL-TOGGLEON-SNAPSHOT</version>
+    <version>17.0.9-CIVIL-TOGGLEON-SNAPSHOT</version>
 
 
     <packaging>pom</packaging>
