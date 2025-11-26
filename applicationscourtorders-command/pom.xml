@@ -4,7 +4,7 @@
     <parent>
         <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
         <artifactId>applicationscourtorders-parent</artifactId>
-        <version>17.0.67-CCT-2271-SNAPSHOT</version>
+        <version>17.0.68-CCT-2271-SNAPSHOT</version>
     </parent>
 
     <artifactId>applicationscourtorders-command</artifactId>
