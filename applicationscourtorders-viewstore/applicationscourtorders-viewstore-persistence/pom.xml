@@ -7,6 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <h2.version>1.4.196</h2.version>
+    </properties>
+
     <artifactId>applicationscourtorders-viewstore-persistence</artifactId>
 
 
@@ -118,6 +122,12 @@
             <groupId>uk.gov.justice.utils</groupId>
             <artifactId>test-utils-logging-log4j</artifactId>
             <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
