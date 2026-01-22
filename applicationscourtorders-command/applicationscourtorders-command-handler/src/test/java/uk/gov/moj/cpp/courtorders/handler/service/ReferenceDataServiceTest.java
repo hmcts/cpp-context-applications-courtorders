@@ -14,7 +14,7 @@ import uk.gov.justice.services.messaging.Metadata;
 
 import java.util.UUID;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class ReferenceDataServiceTest {
 
     @Test
     void shouldGetResultDefinition() {
-        final JsonObject jsonObject = Json.createObjectBuilder().add("id", randomUUID().toString()).build();
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder().add("id", randomUUID().toString()).build();
         final UUID resultDefinitionId = randomUUID();
         final Metadata metadata = metadataBuilder().withId(randomUUID()).withName("ids").build();
         ArgumentCaptor<JsonEnvelope> jsonEnvelopeArgumentCaptor = ArgumentCaptor.forClass(JsonEnvelope.class);
