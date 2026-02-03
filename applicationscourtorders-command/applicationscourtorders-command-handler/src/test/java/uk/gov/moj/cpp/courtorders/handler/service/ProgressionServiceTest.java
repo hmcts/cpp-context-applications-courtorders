@@ -8,6 +8,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static uk.gov.justice.services.messaging.Envelope.metadataBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 import uk.gov.justice.services.core.requester.Requester;
 import uk.gov.justice.services.messaging.JsonEnvelope;
@@ -15,7 +16,6 @@ import uk.gov.justice.services.messaging.Metadata;
 
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class ProgressionServiceTest {
 
     @Test
     void shouldGetJudicialChildResults() {
-        final JsonObject jsonObject = Json.createObjectBuilder().add("id", randomUUID().toString()).build();
+        final JsonObject jsonObject = createObjectBuilder().add("id", randomUUID().toString()).build();
         final UUID hearingId = randomUUID();
         final UUID masterDefendantId = randomUUID();
         final UUID judicialResultTypeId = randomUUID();
@@ -63,7 +63,7 @@ class ProgressionServiceTest {
 
     @Test
     void shouldGetJudicialChildResultsV2() {
-        final JsonObject jsonObject = Json.createObjectBuilder().add("id", randomUUID().toString()).build();
+        final JsonObject jsonObject = createObjectBuilder().add("id", randomUUID().toString()).build();
         final UUID hearingId = randomUUID();
         final UUID masterDefendantId = randomUUID();
         final UUID judicialResultTypeId = randomUUID();
