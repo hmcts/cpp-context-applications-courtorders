@@ -2,16 +2,14 @@ package uk.gov.moj.cpp.applications.util;
 
 import static java.util.Optional.ofNullable;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.moj.cpp.applications.util.OptionalPresent.ifPresent;
 
-import io.restassured.path.json.JsonPath;
-import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
-import org.apache.activemq.artemis.jms.client.ActiveMQTopic;
-import org.hamcrest.Matcher;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.justice.services.messaging.Metadata;
+
+import java.io.StringReader;
+import java.util.Optional;
 
 import javax.jms.Connection;
 import javax.jms.JMSException;
@@ -20,10 +18,14 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
-import javax.json.Json;
 import javax.json.JsonObject;
-import java.io.StringReader;
-import java.util.Optional;
+
+import io.restassured.path.json.JsonPath;
+import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
+import org.apache.activemq.artemis.jms.client.ActiveMQTopic;
+import org.hamcrest.Matcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class QueueUtil {
@@ -121,7 +123,7 @@ public class QueueUtil {
 
     public static Optional<JsonObject> retrieveMessageAsJsonObject(final MessageConsumer consumer) {
         return ifPresent(retrieveMessageAsString(consumer, RETRIEVE_TIMEOUT),
-                (x) -> Optional.of(Json.createReader(new StringReader(x)).readObject())
+                (x) -> Optional.of(createReader(new StringReader(x)).readObject())
         ).orElse(Optional::empty);
     }
 
