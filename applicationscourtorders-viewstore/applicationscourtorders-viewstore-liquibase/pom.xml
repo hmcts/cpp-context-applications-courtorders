@@ -3,7 +3,7 @@
     <parent>
         <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
         <artifactId>applicationscourtorders-viewstore</artifactId>
-        <version>17.104.69-CHD-1784-SNAPSHOT</version>
+        <version>17.104.70-CHD-1784-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
