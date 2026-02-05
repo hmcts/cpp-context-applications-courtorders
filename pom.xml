@@ -12,7 +12,6 @@
     <artifactId>applicationscourtorders-parent</artifactId>
     <version>17.104.69-CHD-1784-SNAPSHOT</version>
 
-
     <packaging>pom</packaging>
 
     <name>Application court order Context - Parent Module</name>
