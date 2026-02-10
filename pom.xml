@@ -21,7 +21,7 @@
         <sonar.jacoco.itReportPath>${project.basedir}/../target/jacoco-it.exec</sonar.jacoco.itReportPath>
         <sonar.report.export.path>sonar-report.json</sonar.report.export.path>
         <sonar.scm.provider>git</sonar.scm.provider>
-        <coredomain.version>17.103.10</coredomain.version>
+        <coredomain.version>17.103.11</coredomain.version>
         <usersgroups.version>17.0.41</usersgroups.version>
         <referencedata.version>17.0.119</referencedata.version>
         <progression.version>17.0.211</progression.version>
