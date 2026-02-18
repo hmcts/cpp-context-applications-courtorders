@@ -1,5 +1,6 @@
 {
   "id": "%COURT_ORDER_ID%",
+  "defendantIds": ["%DEFENDANT_ID%"],
   "masterDefendantId": "%DEFENDANT_ID%",
   "judicialResultTypeId": "f1fa0821-29be-4ec5-ad56-13eafe93021d",
   "label": "Breach order",
