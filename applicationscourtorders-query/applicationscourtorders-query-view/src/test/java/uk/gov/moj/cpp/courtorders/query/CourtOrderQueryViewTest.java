@@ -24,7 +24,7 @@ import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.moj.cpp.courtorders.persistence.entity.CourtOrderEntity;
 import uk.gov.moj.cpp.courtorders.persistence.repository.CourtOrderRepository;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import java.time.LocalDate;
@@ -68,7 +68,7 @@ public class CourtOrderQueryViewTest {
     public void getCourtOrdersByDefendant() {
         final UUID defendantId = UUID.randomUUID();
         final LocalDate hearingDate = LocalDate.now().plusDays(2);
-        final JsonObject jsonObject = Json.createObjectBuilder()
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder()
                 .add("defendantId", defendantId.toString())
                 .add("hearingDate", hearingDate.toString())
                 .build();
@@ -78,7 +78,7 @@ public class CourtOrderQueryViewTest {
                 jsonObject);
         final CourtOrderEntity courtOrderEntity = new CourtOrderEntity();
         final UUID courtOrderId = randomUUID();
-        final JsonObject courtOrderPayload = Json.createObjectBuilder().add("id", courtOrderId.toString()).build();
+        final JsonObject courtOrderPayload = JsonObjects.createObjectBuilder().add("id", courtOrderId.toString()).build();
         courtOrderEntity.setPayload(courtOrderPayload.toString());
         Mockito.when(courtOrderRepository.findByDefendantIdAndExpiryDate(defendantId, hearingDate)).thenReturn(Lists.newArrayList(courtOrderEntity));
         final JsonEnvelope envelope = courtOrderQueryView.getCourtOrdersByDefendant(jsonEnvelope);
@@ -93,7 +93,7 @@ public class CourtOrderQueryViewTest {
     void shouldGetCourtOrdersByDefendantReturnShowUnpaidWorkWarningAsTrueWhenHearingDateIsAfterEndDate() {
         final UUID defendantId = UUID.randomUUID();
         final LocalDate endDate = LocalDate.now().minusDays(2);
-        final JsonObject jsonObject = Json.createObjectBuilder()
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder()
                 .add("defendantId", defendantId.toString())
                 .add("hearingDate", LocalDate.now().toString())
                 .build();
@@ -103,7 +103,7 @@ public class CourtOrderQueryViewTest {
                 jsonObject);
         final CourtOrderEntity courtOrderEntity = new CourtOrderEntity();
         final UUID courtOrderId = randomUUID();
-        final JsonObject courtOrderPayload = Json.createObjectBuilder().add("id", courtOrderId.toString())
+        final JsonObject courtOrderPayload = JsonObjects.createObjectBuilder().add("id", courtOrderId.toString())
                 .add("isUnpaidWork", true)
                 .add("endDate", endDate.toString())
                 .build();
@@ -121,7 +121,7 @@ public class CourtOrderQueryViewTest {
     void shouldGetCourtOrdersByDefendantReturnShowUnpaidWorkWarningAsFalseWhenHearingDateIsBeforeEndDate() {
         final UUID defendantId = UUID.randomUUID();
         LocalDate endDate = LocalDate.now().plusMonths(2);
-        final JsonObject jsonObject = Json.createObjectBuilder()
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder()
                 .add("defendantId", defendantId.toString())
                 .add("hearingDate", LocalDate.now().toString())
                 .build();
@@ -131,7 +131,7 @@ public class CourtOrderQueryViewTest {
                 jsonObject);
         final CourtOrderEntity courtOrderEntity = new CourtOrderEntity();
         final UUID courtOrderId = randomUUID();
-        final JsonObject courtOrderPayload = Json.createObjectBuilder().add("id", courtOrderId.toString())
+        final JsonObject courtOrderPayload = JsonObjects.createObjectBuilder().add("id", courtOrderId.toString())
                 .add("isUnpaidWork", true)
                 .add("endDate", endDate.toString())
                 .build();
@@ -156,7 +156,7 @@ public class CourtOrderQueryViewTest {
         LocalDate endDate1 = LocalDate.now().minusMonths(2);
         LocalDate endDate2 = LocalDate.now().plusMonths(1);
         LocalDate endDate3 = LocalDate.now().minusMonths(2);
-        final JsonObject jsonObject = Json.createObjectBuilder()
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder()
                 .add("filterCriteria", defendantId1 + ":" + offenceDate1 + "," + defendantId2 + ":" + offenceDate2 + "," + defendantId3 + ":" + offenceDate3)
                 .add("hearingDate", LocalDate.now().toString())
                 .build();
@@ -166,7 +166,7 @@ public class CourtOrderQueryViewTest {
                 jsonObject);
         final CourtOrderEntity courtOrderEntity1 = new CourtOrderEntity();
         final UUID courtOrderId = randomUUID();
-        final JsonObject courtOrderPayload = Json.createObjectBuilder().add("id", courtOrderId.toString())
+        final JsonObject courtOrderPayload = JsonObjects.createObjectBuilder().add("id", courtOrderId.toString())
                 .add("isUnpaidWork", true)
                 .add("endDate", endDate1.toString())
                 .build();
@@ -174,7 +174,7 @@ public class CourtOrderQueryViewTest {
         Mockito.when(courtOrderRepository.findByDefendantIdAndExpiryDate(defendantId1, offenceDate1)).thenReturn(List.of(courtOrderEntity1));
         final CourtOrderEntity courtOrderEntity2 = new CourtOrderEntity();
         final UUID courtOrderId2 = randomUUID();
-        final JsonObject courtOrderPayload2 = Json.createObjectBuilder().add("id", courtOrderId2.toString())
+        final JsonObject courtOrderPayload2 = JsonObjects.createObjectBuilder().add("id", courtOrderId2.toString())
                 .add("isUnpaidWork", true)
                 .add("endDate", endDate2.toString())
                 .build();
@@ -182,7 +182,7 @@ public class CourtOrderQueryViewTest {
         Mockito.when(courtOrderRepository.findByDefendantIdAndExpiryDate(defendantId2, offenceDate2)).thenReturn(List.of(courtOrderEntity2));
         final CourtOrderEntity courtOrderEntity3 = new CourtOrderEntity();
         final UUID courtOrderId3 = randomUUID();
-        final JsonObject courtOrderPayload3 = Json.createObjectBuilder().add("id", courtOrderId3.toString())
+        final JsonObject courtOrderPayload3 = JsonObjects.createObjectBuilder().add("id", courtOrderId3.toString())
                 .add("isUnpaidWork", false)
                 .add("endDate", endDate3.toString())
                 .build();
@@ -207,7 +207,7 @@ public class CourtOrderQueryViewTest {
     public void getCourtOrdersByCaseId() {
         final UUID caseId = UUID.randomUUID();
         final UUID defendantId = UUID.randomUUID();
-        final JsonObject jsonObject = Json.createObjectBuilder()
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder()
                 .add("caseId", caseId.toString())
                 .add("defendantId", defendantId.toString())
                 .build();
@@ -217,7 +217,7 @@ public class CourtOrderQueryViewTest {
                 jsonObject);
         final CourtOrderEntity courtOrderEntity = new CourtOrderEntity();
         final UUID courtOrderId = randomUUID();
-        final JsonObject courtOrderPayload = Json.createObjectBuilder().add("id", courtOrderId.toString()).build();
+        final JsonObject courtOrderPayload = JsonObjects.createObjectBuilder().add("id", courtOrderId.toString()).build();
         courtOrderEntity.setPayload(courtOrderPayload.toString());
         Mockito.when(courtOrderRepository.findByCaseAndDefendantId(caseId.toString(), defendantId)).thenReturn(Lists.newArrayList(courtOrderEntity));
         final JsonEnvelope envelope = courtOrderQueryView.getCourtOrdersByCase(jsonEnvelope);
@@ -232,7 +232,7 @@ public class CourtOrderQueryViewTest {
         final UUID defendantId = UUID.randomUUID();
         final UUID hearingId = UUID.randomUUID();
         final LocalDate sittingDate = LocalDate.now();
-        final JsonObject jsonObject = Json.createObjectBuilder()
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder()
                 .add("defendantId", defendantId.toString())
                 .add("hearingId", hearingId.toString())
                 .add("sittingDate", sittingDate.toString())
@@ -243,7 +243,7 @@ public class CourtOrderQueryViewTest {
                 jsonObject);
         final CourtOrderEntity courtOrderEntity = new CourtOrderEntity();
         final UUID courtOrderId = randomUUID();
-        final JsonObject courtOrderPayload = Json.createObjectBuilder().add("id", courtOrderId.toString()).build();
+        final JsonObject courtOrderPayload = JsonObjects.createObjectBuilder().add("id", courtOrderId.toString()).build();
         courtOrderEntity.setPayload(courtOrderPayload.toString());
         Mockito.when(courtOrderRepository.findByHearingDefendantIdAndSittingDate(defendantId, hearingId, sittingDate)).thenReturn(Lists.newArrayList(courtOrderEntity));
         final JsonEnvelope envelope = courtOrderQueryView.getCourtOrdersByHearingAndDefendant(jsonEnvelope);

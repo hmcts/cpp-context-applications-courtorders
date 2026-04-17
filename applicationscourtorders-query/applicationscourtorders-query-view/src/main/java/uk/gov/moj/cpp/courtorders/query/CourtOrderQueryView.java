@@ -14,7 +14,7 @@ import uk.gov.moj.cpp.courtorders.persistence.entity.CourtOrderEntity;
 import uk.gov.moj.cpp.courtorders.persistence.repository.CourtOrderRepository;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -40,8 +40,8 @@ public class CourtOrderQueryView {
     private ObjectToJsonObjectConverter objectToJsonObjectConverter;
 
     public JsonEnvelope getCourtOrdersByDefendant(final JsonEnvelope query) {
-        final JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
-        final JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        final JsonArrayBuilder jsonArrayBuilder = JsonObjects.createArrayBuilder();
+        final JsonObjectBuilder jsonObjectBuilder = JsonObjects.createObjectBuilder();
         final JsonObject payloadAsJsonObject = query.payloadAsJsonObject();
         final UUID defendantId = UUID.fromString(payloadAsJsonObject.getString("defendantId"));
         final LocalDate expiryDate = payloadAsJsonObject.containsKey(HEARING_DATE) ?
@@ -55,8 +55,8 @@ public class CourtOrderQueryView {
     }
 
     public JsonEnvelope getCourtOrdersByDefendantAndOffenceDate(final JsonEnvelope query) {
-        final JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
-        final JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        final JsonArrayBuilder jsonArrayBuilder = JsonObjects.createArrayBuilder();
+        final JsonObjectBuilder jsonObjectBuilder = JsonObjects.createObjectBuilder();
         final JsonObject payloadAsJsonObject = query.payloadAsJsonObject();
         final List<String> defendantIdsAndOffenceDates = Arrays.stream(payloadAsJsonObject.getString("filterCriteria").split(",")).toList();
         final LocalDate hearingDate = parse(payloadAsJsonObject.getString(HEARING_DATE));
@@ -74,8 +74,8 @@ public class CourtOrderQueryView {
     }
 
     public JsonEnvelope getCourtOrdersByCase(final JsonEnvelope query) {
-        final JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
-        final JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        final JsonArrayBuilder jsonArrayBuilder = JsonObjects.createArrayBuilder();
+        final JsonObjectBuilder jsonObjectBuilder = JsonObjects.createObjectBuilder();
         final JsonObject payloadAsJsonObject = query.payloadAsJsonObject();
         final UUID caseId = UUID.fromString(payloadAsJsonObject.getString("caseId"));
         final UUID defendantId = UUID.fromString(payloadAsJsonObject.getString("defendantId"));
@@ -88,8 +88,8 @@ public class CourtOrderQueryView {
     }
 
     public JsonEnvelope getCourtOrdersByHearingAndDefendant(final JsonEnvelope query) {
-        final JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
-        final JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        final JsonArrayBuilder jsonArrayBuilder = JsonObjects.createArrayBuilder();
+        final JsonObjectBuilder jsonObjectBuilder = JsonObjects.createObjectBuilder();
         final JsonObject payloadAsJsonObject = query.payloadAsJsonObject();
         final UUID defendantId = UUID.fromString(payloadAsJsonObject.getString("defendantId"));
         final UUID hearingId = UUID.fromString(payloadAsJsonObject.getString("hearingId"));
