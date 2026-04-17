@@ -15,7 +15,7 @@ import uk.gov.justice.services.messaging.Metadata;
 
 import java.util.UUID;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class ProgressionServiceTest {
 
     @Test
     void shouldGetJudicialChildResults() {
-        final JsonObject jsonObject = Json.createObjectBuilder().add("id", randomUUID().toString()).build();
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder().add("id", randomUUID().toString()).build();
         final UUID hearingId = randomUUID();
         final UUID masterDefendantId = randomUUID();
         final UUID judicialResultTypeId = randomUUID();
@@ -63,7 +63,7 @@ class ProgressionServiceTest {
 
     @Test
     void shouldGetJudicialChildResultsV2() {
-        final JsonObject jsonObject = Json.createObjectBuilder().add("id", randomUUID().toString()).build();
+        final JsonObject jsonObject = JsonObjects.createObjectBuilder().add("id", randomUUID().toString()).build();
         final UUID hearingId = randomUUID();
         final UUID masterDefendantId = randomUUID();
         final UUID judicialResultTypeId = randomUUID();

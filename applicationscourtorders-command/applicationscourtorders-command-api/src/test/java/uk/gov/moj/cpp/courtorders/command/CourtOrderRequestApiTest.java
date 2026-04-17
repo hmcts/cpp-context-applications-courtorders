@@ -25,7 +25,7 @@ import uk.gov.justice.services.messaging.Metadata;
 import uk.gov.justice.services.messaging.spi.DefaultEnvelope;
 import uk.gov.justice.services.messaging.spi.DefaultJsonEnvelopeProvider;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 
 @ExtendWith(MockitoExtension.class)
@@ -104,8 +104,8 @@ public class CourtOrderRequestApiTest {
 
 
     private JsonEnvelope buildEnvelope(String eventName) {
-        final JsonObject payload = Json.createObjectBuilder()
-                .add("courtOrder", Json.createObjectBuilder().add("id", randomUUID().toString()).build())
+        final JsonObject payload = JsonObjects.createObjectBuilder()
+                .add("courtOrder", JsonObjects.createObjectBuilder().add("id", randomUUID().toString()).build())
                 .build();
         final Metadata metadata = Envelope
                 .metadataBuilder()
