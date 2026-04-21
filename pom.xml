@@ -21,7 +21,7 @@
         <sonar.jacoco.itReportPath>${project.basedir}/../target/jacoco-it.exec</sonar.jacoco.itReportPath>
         <sonar.report.export.path>sonar-report.json</sonar.report.export.path>
         <sonar.scm.provider>git</sonar.scm.provider>
-        <coredomain.version>17.103.10</coredomain.version>
+        <coredomain.version>17.103.12</coredomain.version>
         <usersgroups.version>17.104.47</usersgroups.version>
         <referencedata.version>17.103.131</referencedata.version>
         <progression.version>17.0.248</progression.version>
@@ -35,6 +35,7 @@
             **/uk/gov/justice/core/courts/**/*
             **/uk/gov/moj/cpp/courtorders/command/**/*
         </sonar.coverage.exclusions>
+        <sjp-command-api.version>17.103.167</sjp-command-api.version>
     </properties>
     <modules>
         <module>applicationscourtorders-query</module>
