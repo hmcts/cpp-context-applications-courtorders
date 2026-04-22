@@ -10,7 +10,7 @@
 
     <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
     <artifactId>applicationscourtorders-parent</artifactId>
-    <version>17.0.72-PEG-2848-R-SNAPSHOT</version>
+    <version>17.0.73-PEG-2848-R-SNAPSHOT</version>
 
 
     <packaging>pom</packaging>
