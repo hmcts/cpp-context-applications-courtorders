@@ -1,6 +1,6 @@
 package uk.gov.moj.cpp.courtorders.indexer.helper;
 
-import static javax.json.Json.createReader;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 
 import java.io.IOException;
 import java.io.InputStream;
