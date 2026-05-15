@@ -3,13 +3,23 @@ package uk.gov.moj.cpp.courtorders.command;
 
 import static java.util.UUID.randomUUID;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerClassMatcher.isHandlerClass;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerMethodMatcher.method;
+
+import uk.gov.justice.services.core.sender.Sender;
+import uk.gov.justice.services.messaging.Envelope;
+import uk.gov.justice.services.messaging.JsonEnvelope;
+import uk.gov.justice.services.messaging.Metadata;
+import uk.gov.justice.services.messaging.spi.DefaultEnvelope;
+import uk.gov.justice.services.messaging.spi.DefaultJsonEnvelopeProvider;
+
+import javax.json.JsonObject;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,15 +28,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import uk.gov.justice.services.core.sender.Sender;
-import uk.gov.justice.services.messaging.Envelope;
-import uk.gov.justice.services.messaging.JsonEnvelope;
-import uk.gov.justice.services.messaging.Metadata;
-import uk.gov.justice.services.messaging.spi.DefaultEnvelope;
-import uk.gov.justice.services.messaging.spi.DefaultJsonEnvelopeProvider;
-
-import javax.json.Json;
-import javax.json.JsonObject;
 
 @ExtendWith(MockitoExtension.class)
 public class CourtOrderRequestApiTest {
@@ -104,8 +105,8 @@ public class CourtOrderRequestApiTest {
 
 
     private JsonEnvelope buildEnvelope(String eventName) {
-        final JsonObject payload = Json.createObjectBuilder()
-                .add("courtOrder", Json.createObjectBuilder().add("id", randomUUID().toString()).build())
+        final JsonObject payload = createObjectBuilder()
+                .add("courtOrder", createObjectBuilder().add("id", randomUUID().toString()).build())
                 .build();
         final Metadata metadata = Envelope
                 .metadataBuilder()
