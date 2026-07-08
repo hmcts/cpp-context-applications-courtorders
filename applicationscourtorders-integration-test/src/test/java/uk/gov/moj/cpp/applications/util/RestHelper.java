@@ -6,32 +6,34 @@ import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static uk.gov.justice.services.common.http.HeaderConstants.USER_ID;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.justice.services.test.utils.core.http.RequestParamsBuilder.requestParams;
 import static uk.gov.justice.services.test.utils.core.http.RestPoller.poll;
 import static uk.gov.justice.services.test.utils.core.matchers.ResponsePayloadMatcher.payload;
 import static uk.gov.justice.services.test.utils.core.matchers.ResponseStatusMatcher.status;
 import static uk.gov.moj.cpp.applications.util.AbstractTestHelper.getReadUrl;
 
-import com.jayway.jsonpath.ReadContext;
-import java.util.Arrays;
-import javax.ws.rs.core.Response;
-import org.apache.http.HttpStatus;
-import org.hamcrest.Matcher;
 import uk.gov.justice.services.common.http.HeaderConstants;
 import uk.gov.justice.services.test.utils.core.matchers.ResponseStatusMatcher;
 import uk.gov.justice.services.test.utils.core.rest.RestClient;
 
-import javax.json.Json;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+import javax.ws.rs.core.Response;
+
+import com.jayway.jsonpath.ReadContext;
+import org.apache.http.HttpStatus;
+import org.hamcrest.Matcher;
 
 public class RestHelper {
 
@@ -89,7 +91,7 @@ public class RestHelper {
 
     public static JsonObject getJsonObject(final String jsonAsString) {
         final JsonObject payload;
-        try (final JsonReader jsonReader = Json.createReader(new StringReader(jsonAsString))) {
+        try (final JsonReader jsonReader = createReader(new StringReader(jsonAsString))) {
             payload = jsonReader.readObject();
         }
         return payload;
@@ -101,7 +103,7 @@ public class RestHelper {
     }
 
     public static Response postCommandWithUserId(final String uri, final String mediaType,
-                                                                  final String jsonStringBody, final String userId) throws IOException {
+                                                 final String jsonStringBody, final String userId) throws IOException {
         MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
         headers.put(USER_ID, Arrays.asList(userId));
         return restClient.postCommand(uri,
