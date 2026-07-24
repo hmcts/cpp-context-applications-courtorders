@@ -4,7 +4,7 @@ import static com.jayway.jsonpath.matchers.JsonPathMatchers.withJsonPath;
 import static java.lang.String.format;
 import static java.lang.String.join;
 import static java.util.UUID.randomUUID;
-import static javax.ws.rs.core.Response.Status.OK;
+import static jakarta.ws.rs.core.Response.Status.OK;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -55,14 +55,14 @@ public class CourtOrderIT extends AbstractIT {
     @Test
     public void shouldCreateCourtOrder() throws IOException {
         courtOrderId = randomUUID().toString();
-        final javax.ws.rs.core.Response writeResponse = submitCourtOrder();
+        final jakarta.ws.rs.core.Response writeResponse = submitCourtOrder();
         assertThat(writeResponse.getStatus(), equalTo(HttpStatus.SC_ACCEPTED));
         assertCourtOrderForDefendant(defendantId, allOf(
                 withJsonPath("$.courtOrders[0].id", equalTo(courtOrderId)),
                 withJsonPath("$.courtOrders[0].courtOrderOffences[0].offence.offenceCode", equalTo("TTH105HY"))));
 
         final LocalDate newSittingDate = sittingDate.plusDays(1);
-        final javax.ws.rs.core.Response courtOrderResponse = updateCourtOrderForDifferentSittingDate(newSittingDate);
+        final jakarta.ws.rs.core.Response courtOrderResponse = updateCourtOrderForDifferentSittingDate(newSittingDate);
         assertThat(courtOrderResponse.getStatus(), equalTo(HttpStatus.SC_ACCEPTED));
 
         assertCourtOrderForHearingAndDefendant(defendantId, hearingId, newSittingDate, allOf(
@@ -73,7 +73,7 @@ public class CourtOrderIT extends AbstractIT {
                 withJsonPath("$.courtOrders[0].id", equalTo(courtOrderId))
         ));
         final LocalDate newEndDate = sittingDate.plusDays(10);
-        final javax.ws.rs.core.Response updatedCourtOrderResponse = updateCourtOrderWithNewEndDate(newEndDate);
+        final jakarta.ws.rs.core.Response updatedCourtOrderResponse = updateCourtOrderWithNewEndDate(newEndDate);
         assertThat(updatedCourtOrderResponse.getStatus(), equalTo(HttpStatus.SC_ACCEPTED));
 
         assertCourtOrderForCaseId(caseId, defendantId, allOf(
@@ -86,13 +86,13 @@ public class CourtOrderIT extends AbstractIT {
     @Test
     public void shouldRemoveCourtOrder() throws IOException {
         courtOrderId = randomUUID().toString();
-        final javax.ws.rs.core.Response writeResponse = submitCourtOrder();
+        final jakarta.ws.rs.core.Response writeResponse = submitCourtOrder();
         assertThat(writeResponse.getStatus(), equalTo(HttpStatus.SC_ACCEPTED));
         assertCourtOrderForDefendant(defendantId, allOf(
                 withJsonPath("$.courtOrders[0].id", equalTo(courtOrderId)),
                 withJsonPath("$.courtOrders[0].courtOrderOffences[0].offence.offenceCode", equalTo("TTH105HY"))));
 
-        final javax.ws.rs.core.Response writeResponseRemoved = removeCourtOrder();
+        final jakarta.ws.rs.core.Response writeResponseRemoved = removeCourtOrder();
         assertThat(writeResponseRemoved.getStatus(), equalTo(HttpStatus.SC_ACCEPTED));
 
         assertCourtOrderForCourtOrderId(caseId, defendantId, allOf(
@@ -101,16 +101,16 @@ public class CourtOrderIT extends AbstractIT {
 
     }
 
-    private javax.ws.rs.core.Response removeCourtOrder() throws IOException {
+    private jakarta.ws.rs.core.Response removeCourtOrder() throws IOException {
         String removeCourtOrderPayload = getPayload("progression.remove-court-order.json")
                 .replace("%COURT_ORDER_ID%", courtOrderId);
-        final javax.ws.rs.core.Response writeResponse = postCommand(getWriteUrl(join("", "/court-order/", courtOrderId)),
+        final jakarta.ws.rs.core.Response writeResponse = postCommand(getWriteUrl(join("", "/court-order/", courtOrderId)),
                 "application/vnd.courtorders.remove-court-order+json",
                 removeCourtOrderPayload);
         return writeResponse;
     }
 
-    private javax.ws.rs.core.Response submitCourtOrder() throws IOException {
+    private jakarta.ws.rs.core.Response submitCourtOrder() throws IOException {
         String createCourtOrderPayload = getPayload("progression.create-court-order.json")
                 .replace("%COURT_ORDER_ID%", courtOrderId)
                 .replace("%HEARING_ID%", hearingId)
@@ -118,13 +118,13 @@ public class CourtOrderIT extends AbstractIT {
                 .replace("%CASE_ID%", caseId)
                 .replace("%END_DATE%", endDate.toString())
                 .replace("%DEFENDANT_ID%", defendantId);
-        final javax.ws.rs.core.Response writeResponse = postCommand(getWriteUrl("/court-order"),
+        final jakarta.ws.rs.core.Response writeResponse = postCommand(getWriteUrl("/court-order"),
                 "application/vnd.courtorders.create-court-order+json",
                 createCourtOrderPayload);
         return writeResponse;
     }
 
-    private javax.ws.rs.core.Response updateCourtOrderForDifferentSittingDate(LocalDate newSittingDate) throws IOException {
+    private jakarta.ws.rs.core.Response updateCourtOrderForDifferentSittingDate(LocalDate newSittingDate) throws IOException {
         String createCourtOrderPayload;
         createCourtOrderPayload = getPayload("progression.create-court-order1.json")
                 .replace("%COURT_ORDER_ID%", courtOrderId)
@@ -132,7 +132,7 @@ public class CourtOrderIT extends AbstractIT {
                 .replace("%ORDER_DATE%", newSittingDate.toString())
                 .replace("%CASE_ID%", caseId)
                 .replace("%DEFENDANT_ID%", defendantId);
-        final javax.ws.rs.core.Response courtOrderResponse = postCommand(getWriteUrl("/court-order"),
+        final jakarta.ws.rs.core.Response courtOrderResponse = postCommand(getWriteUrl("/court-order"),
                 "application/vnd.courtorders.create-court-order+json",
                 createCourtOrderPayload);
         return courtOrderResponse;
@@ -174,13 +174,13 @@ public class CourtOrderIT extends AbstractIT {
                 .getPayload();
     }
 
-    private javax.ws.rs.core.Response updateCourtOrderWithNewEndDate(LocalDate newEndDate) throws IOException {
+    private jakarta.ws.rs.core.Response updateCourtOrderWithNewEndDate(LocalDate newEndDate) throws IOException {
         String updateCourtOrderPayload;
         updateCourtOrderPayload = getPayload("progression.update-court-order.json")
                 .replace("%COURT_ORDER_ID%", courtOrderId)
                 .replace("%APPLICATION_ID%", applicationId)
                 .replace("%END_DATE%", newEndDate.toString());
-        final javax.ws.rs.core.Response writeResponse = postCommand(getWriteUrl(join("", "/court-order")),
+        final jakarta.ws.rs.core.Response writeResponse = postCommand(getWriteUrl(join("", "/court-order")),
                 "application/vnd.courtorders.update-court-order-validity+json",
                 updateCourtOrderPayload);
         return writeResponse;

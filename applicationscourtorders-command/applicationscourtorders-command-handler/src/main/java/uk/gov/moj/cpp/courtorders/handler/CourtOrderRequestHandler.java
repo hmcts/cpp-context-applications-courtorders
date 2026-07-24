@@ -23,9 +23,9 @@ import uk.gov.moj.cpp.courtorders.command.UpdateCourtOrderValidity;
 import uk.gov.moj.cpp.courtorders.handler.service.ProgressionService;
 import uk.gov.moj.cpp.courtorders.handler.service.ReferenceDataService;
 
-import javax.inject.Inject;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
+import jakarta.inject.Inject;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
 
 import java.time.LocalDate;
 import java.util.Arrays;

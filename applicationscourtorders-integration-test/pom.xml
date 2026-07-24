@@ -3,7 +3,7 @@
     <parent>
         <artifactId>applicationscourtorders-parent</artifactId>
         <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
-        <version>17.104.73-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -25,11 +25,6 @@
         <dependency>
             <groupId>uk.gov.justice.services</groupId>
             <artifactId>wiremock-test-utils</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomee</groupId>
-            <artifactId>openejb-cxf-rs</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

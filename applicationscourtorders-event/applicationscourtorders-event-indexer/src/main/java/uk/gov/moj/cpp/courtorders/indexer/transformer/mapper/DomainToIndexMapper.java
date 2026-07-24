@@ -58,6 +58,13 @@ public class DomainToIndexMapper {
     private void addPartyToCaseDetails(final CreateCourtOrder createCourtOrder,
                                        final CourtOrderOffence courtOrderOffence,
                                        final CaseDetails caseDetailsExisting) {
+        if (isNull(createCourtOrder.getDefendantIds())) {
+            // defendantIds is optional on the create-court-order command (not in the schema's
+            // required list). A court order with no defendant parties has nothing to index against
+            // a party, so skip gracefully. Without this guard a null here throws an NPE that fails
+            // the event-indexer and stalls the (shared) crime_case_index ingestion stream.
+            return;
+        }
         createCourtOrder.getDefendantIds().forEach(defendantId -> {
             final Party party = new Party();
             party.set_party_type("DEFENDANT");

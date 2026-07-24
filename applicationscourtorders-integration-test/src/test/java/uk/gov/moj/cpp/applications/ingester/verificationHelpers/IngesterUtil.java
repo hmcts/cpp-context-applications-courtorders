@@ -6,8 +6,8 @@ import uk.gov.justice.services.test.utils.core.messaging.Poller;
 
 import java.io.StringReader;
 
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
 
 public class IngesterUtil {
 
