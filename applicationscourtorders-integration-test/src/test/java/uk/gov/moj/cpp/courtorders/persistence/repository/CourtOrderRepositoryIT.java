@@ -83,4 +83,49 @@ class CourtOrderRepositoryIT {
         assertThat(result.get(0).getPayload().equals("{}"), is(true));
         assertThat(result.get(0).isRemoved(), is(false));
     }
+
+    /**
+     * Exercises the Postgres-specific native query ({@code json_array_elements(payload::json ->'courtOrderOffences')}),
+     * which H2 cannot run — the reason this test must target real Postgres. Verifies each of the query's three
+     * filters: prosecutionCaseId (matched inside the JSON payload), defendant_id, and {@code is_removed is false}.
+     */
+    @Test
+    void shouldFindByCaseAndDefendantId() {
+        final String caseId = UUID.randomUUID().toString();
+        final String otherCaseId = UUID.randomUUID().toString();
+        final UUID defendantId = UUID.randomUUID();
+        final UUID otherDefendantId = UUID.randomUUID();
+
+        final UUID matchingCourtOrderId = UUID.randomUUID();
+        // Matches: right case in the payload, right defendant, not removed.
+        courtOrderRepository.save(courtOrder(matchingCourtOrderId, defendantId, false, payloadForCase(caseId)));
+        // Right case + defendant but removed -> excluded by `is_removed is false`.
+        courtOrderRepository.save(courtOrder(UUID.randomUUID(), defendantId, true, payloadForCase(caseId)));
+        // Right defendant, different case in the payload -> excluded by the json prosecutionCaseId match.
+        courtOrderRepository.save(courtOrder(UUID.randomUUID(), defendantId, false, payloadForCase(otherCaseId)));
+        // Right case, different defendant -> excluded by the defendant_id match.
+        courtOrderRepository.save(courtOrder(UUID.randomUUID(), otherDefendantId, false, payloadForCase(caseId)));
+
+        final List<CourtOrderEntity> result = courtOrderRepository.findByCaseAndDefendantId(caseId, defendantId);
+
+        assertThat(result.size(), is(1));
+        assertThat(result.get(0).getCourtOrderId(), is(matchingCourtOrderId));
+        assertThat(result.get(0).getDefendantId(), is(defendantId));
+        assertThat(result.get(0).isRemoved(), is(false));
+    }
+
+    private static CourtOrderEntity courtOrder(final UUID courtOrderId, final UUID defendantId, final boolean removed, final String payload) {
+        final CourtOrderEntity entity = new CourtOrderEntity();
+        entity.setId(UUID.randomUUID());
+        entity.setCourtOrderId(courtOrderId);
+        entity.setDefendantId(defendantId);
+        entity.setRemoved(removed);
+        entity.setPayload(payload);
+        entity.setExpiryDate(LocalDate.now());
+        return entity;
+    }
+
+    private static String payloadForCase(final String caseId) {
+        return "{\"courtOrderOffences\":[{\"prosecutionCaseId\":\"" + caseId + "\"}]}";
+    }
 }
