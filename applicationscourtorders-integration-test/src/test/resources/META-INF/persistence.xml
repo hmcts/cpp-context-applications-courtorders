@@ -11,8 +11,10 @@
          is persisted. -->
     <persistence-unit name="applicationscourtorders-test-persistence-unit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jar-file>../classes</jar-file>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <!-- CourtOrderEntity comes from the applicationscourtorders-viewstore-persistence dependency JAR
+             (not this module's ../classes), so it is listed explicitly. -->
+        <class>uk.gov.moj.cpp.courtorders.persistence.entity.CourtOrderEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.url"

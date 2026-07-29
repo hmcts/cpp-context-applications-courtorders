@@ -17,9 +17,12 @@ All notable changes to this project will be documented in this file.
   original `@Query` semantics). DeltaSpike is unavailable under Jakarta EE 11 / CDI 4.
 - `viewstore-persistence` pom: removed DeltaSpike / OpenEJB / `hibernate-entitymanager` / H2; added
   `hibernate-core`, `test-utils-hibernate`, `postgresql`.
-- `CourtOrderRepositoryTest` (DeltaSpike `CdiTestRunner` + embedded H2) → `CourtOrderRepositoryIT`
-  (real-Postgres `HibernateTestEntityManagerProvider`), gated behind the `applicationscourtorders-integration-test`
-  profile.
+- `CourtOrderRepositoryTest` (DeltaSpike `CdiTestRunner` + embedded H2) split into: `CourtOrderRepositoryIT`
+  (real-Postgres `HibernateTestEntityManagerProvider`) moved into the **`applicationscourtorders-integration-test`**
+  module so it runs alongside the other ITs (real Postgres is required — H2 cannot run the native
+  `findByCaseAndDefendantId` `json_array_elements` query); and a Mockito `CourtOrderRepositoryTest` +
+  `CourtOrderEntityTest` in the persistence module giving DB-less unit coverage of all 5 repository methods
+  (query text + params) for the jacoco gate.
 - `persistence.xml` (prod + test) updated to the Jakarta 3.0 namespace.
 
 ### Fixed
