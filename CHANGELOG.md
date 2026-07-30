@@ -2,13 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] — Java 25 / WildFly 40 / Elasticsearch 9.2.2 (25.104.x)
+## [Unreleased] — Java 25 / WildFly 40 / Elasticsearch 9.3.3 (25.104.x)
 
 ### Changed
-- Upgraded to the `service-parent-pom:25.104.0-M8-SNAPSHOT` (Java 25 / WildFly 40 / Jakarta EE 11).
+- Upgraded to the released `service-parent-pom:25.104.0-M9` (Java 25 / WildFly 40 / Jakarta EE 11), which carries the Elasticsearch `9.3.3` client via `platform-libraries M10` / `common-bom M4`.
 - Migrated `javax.*` → `jakarta.*` across all modules; `javax:javaee-api` → `jakarta.platform:jakarta.jakartaee-api`.
 - Added the `jakarta.xml.bind:jakarta.xml.bind-api` override to the RAML client-generator plugin blocks.
-- Elasticsearch embedded test version `7.16.2` → `9.2.2` (indexing via the migrated shared `unifiedsearch-client`).
+- Elasticsearch embedded test version `7.16.2` → `9.3.3` (aligned with the released ES client and the 9.3.3 image/`elasticsearch-eck` chart in ACR; indexing via the migrated shared `unifiedsearch-client`).
 - Bumped `referencedata.version` `17.104.136` → `17.104.137` (interface-version enforcer).
 
 ### Migrated — DeltaSpike Data → plain JPA

@@ -5,7 +5,7 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>25.104.0-M8</version>
+        <version>25.104.0-M9</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
@@ -26,7 +26,7 @@
         <progression.version>17.0.277</progression.version>
         <json-transformer.version>1.0.6</json-transformer.version>
         <elasticsearch-maven-plugin.version>6.13</elasticsearch-maven-plugin.version>
-        <elasticsearch.embedded.version>9.2.2</elasticsearch.embedded.version>
+        <elasticsearch.embedded.version>9.3.3</elasticsearch.embedded.version>
         <stream-transformation-tool-anonymise.version>7.0.0</stream-transformation-tool-anonymise.version>
         <jgitflow.maven.developBranchName>main</jgitflow.maven.developBranchName>
         <sonar.coverage.exclusions>

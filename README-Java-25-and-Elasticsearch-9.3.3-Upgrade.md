@@ -1,7 +1,7 @@
-# Java 25 / WildFly 40 / Elasticsearch 9.2.2 upgrade — guide for the applications-courtorders team
+# Java 25 / WildFly 40 / Elasticsearch 9.3.3 upgrade — guide for the applications-courtorders team
 
 This branch (`dev/java-25-es-9.2.2`, draft PR **#37**) upgrades applications-courtorders to the **25.104.x** line
-(Java 25 / WildFly 40 / Jakarta EE 11) **and** to **Elasticsearch 9.2.2**. It was prepared by the platform/framework
+(Java 25 / WildFly 40 / Jakarta EE 11) **and** to **Elasticsearch 9.3.3**. It was prepared by the platform/framework
 upgrade effort (ticket **PEG-3408**, mirroring the Java-17 ES 9.2 work in **DD-41592**) as the second ES *proving*
 context, after unifiedsearch-query.
 
@@ -16,14 +16,14 @@ index mappings of its own.
 
 ## Why
 
-- Prove Elasticsearch 9.2.2 works on the Java-25 stack for an *indexing* context (unifiedsearch-query covered querying).
+- Prove Elasticsearch 9.3.3 works on the Java-25 stack for an *indexing* context (unifiedsearch-query covered querying).
 - Folded into the July 2026 security-hardening work.
 
 ## What changed (summary)
 
-- **Parent** → `service-parent-pom:25.104.0-M8-SNAPSHOT`; **`javax.*` → `jakarta.*`** across all modules;
+- **Parent** → `service-parent-pom:25.104.0-M9`; **`javax.*` → `jakarta.*`** across all modules;
   `javax:javaee-api` → `jakarta.platform:jakarta.jakartaee-api`; `jakarta.xml.bind-api` override on the RAML
-  client-generator plugins; embedded-ES test version `7.16.2` → `9.2.2`; `referencedata.version` `17.104.136` →
+  client-generator plugins; embedded-ES test version `7.16.2` → `9.3.3`; `referencedata.version` `17.104.136` →
   `17.104.137` (interface-version enforcer).
 - **DeltaSpike Data → plain JPA** repository rewrite (below) — the biggest change.
 - Two **integration-test fixes** (below) — both were test/wiring problems, not application-logic bugs.
@@ -95,9 +95,9 @@ stalling the stream** — it's usually a bad/edge-case event payload, not a faul
 
 ## Test evidence
 
-- **Full-stack integration tests: 5 / 5** — `CourtOrderIT` 2/2, `CourtOrderRequestedIngesterIT` 3/3 — against a live
-  ES 9.2.2 container + WildFly 40 on JDK 25 (run via `./runIntegrationTests.sh`).
-- ~58 unit tests green (including the new `DomainToIndexMapperTest` and the ES-indexer transformer tests).
+- **Full-stack integration tests: 7 / 7** — `CourtOrderIT` 2/2, `CourtOrderRequestedIngesterIT` 3/3, `CourtOrderRepositoryIT` 2/2 — against a live
+  ES 9.3.3 container + WildFly 40 on JDK 25 (run via `./runIntegrationTests.sh`).
+- ~65 unit tests green (including the new `DomainToIndexMapperTest` and the ES-indexer transformer tests).
 
 ---
 
@@ -106,12 +106,12 @@ stalling the stream** — it's usually a bad/edge-case event payload, not a faul
 1. **Review decision #1** (the JPA repository rewrite) and **#2** (null-`defendantIds` indexing behaviour).
 2. Wait for the **25.104.x framework/platform milestones to be released** to Artifactory (this PR is a **draft**
    because it references a `-SNAPSHOT` parent, so CI can't build it yet).
-3. Bump the **parent** from `25.104.0-M8-SNAPSHOT` to the released milestone; likewise any other SNAPSHOT deps.
+3. Bump the **parent** from `25.104.0-M8-SNAPSHOT` to `25.104.0-M9`; likewise any other SNAPSHOT deps.
 4. Run the build + ITs (`./runIntegrationTests.sh`) against a current local stack; expect the same green result.
 5. Set the project version per the release scheme, mark PR **#37** ready, and release.
 
 ## References
 
 - Draft PR: **#37** · Tickets: **PEG-3408**, **DD-41592**
-- Living upgrade page: *Elasticsearch 9.2.2 Upgrade — Java 25* (Confluence, space PETTA, page 1990251336)
+- Living upgrade page: *Elasticsearch 9.3.3 Upgrade — Java 25* (Confluence, space PETTA, page 1990251336)
 - AI-assistant notes for this repo: `CLAUDE.md`; change list: `CHANGELOG.md`.

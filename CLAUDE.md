@@ -1,6 +1,6 @@
 # CLAUDE.md — cpp-context-applications-courtorders
 
-Context-specific notes for the **Java 25 / WildFly 40 / Elasticsearch 9.2.2** upgrade (25.104.x). See the
+Context-specific notes for the **Java 25 / WildFly 40 / Elasticsearch 9.3.3** upgrade (25.104.x). See the
 workspace root `CLAUDE.md` for platform-wide guidance.
 
 ## ⚠️ DeltaSpike Data → plain JPA migration (production code)
@@ -26,15 +26,15 @@ It was rewritten to the standard Java-25 pattern (mirroring `cpp-context-listing
 - `javax.*` → `jakarta.*` across all modules (json, ws.rs, inject, jms, persistence, transaction, enterprise).
 - `javax:javaee-api` → `jakarta.platform:jakarta.jakartaee-api` in every module pom.
 - RAML client-generator plugins (`rest-client-generator-plugin`, `messaging-client-generator-plugin`) need the `jakarta.xml.bind:jakarta.xml.bind-api` (`${jakarta.xml.bind-api.raml.version}`, inherited from parent) override in their `<dependencies>` block, alongside the jakartaee-api plugin dep.
-- Parent → `service-parent-pom:25.104.0-M8-SNAPSHOT`.
+- Parent → `service-parent-pom:25.104.0-M9`.
 
-## Elasticsearch 9.2.2
+## Elasticsearch 9.3.3
 
 - This is an ES **indexing** context: `applicationscourtorders-event-indexer` transforms `court-order-requested`
   events and writes documents via the shared `unifiedsearch-client` (in `cpp-platform-libraries`, already migrated
   to `co.elastic.clients:elasticsearch-java`). This context owns no ES index mappings.
-- `elasticsearch.embedded.version` → `9.2.2` (embedded-ES for unit tests); `elasticsearch-maven-plugin` stays `6.13`.
-- ITs run against the real ES 9.2.2 container in `cpp-developers-docker`. `CourtOrderRequestedIngesterIT` is the
+- `elasticsearch.embedded.version` → `9.3.3` (embedded-ES for unit tests); `elasticsearch-maven-plugin` stays `6.13`.
+- ITs run against the real ES 9.3.3 container in `cpp-developers-docker`. `CourtOrderRequestedIngesterIT` is the
   end-to-end ES indexing proof.
 
 ## Interface-version enforcer
