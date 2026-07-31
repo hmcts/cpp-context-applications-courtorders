@@ -3,7 +3,7 @@
     <parent>
         <artifactId>applicationscourtorders-parent</artifactId>
         <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
-        <version>17.104.73-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -25,11 +25,6 @@
         <dependency>
             <groupId>uk.gov.justice.services</groupId>
             <artifactId>wiremock-test-utils</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomee</groupId>
-            <artifactId>openejb-cxf-rs</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -120,6 +115,25 @@
         </dependency>
 
         <!-- added for framework 6-->
+
+        <!-- Real-Postgres repository IT (CourtOrderRepositoryIT): needs the repository/entity under test,
+             the Hibernate test EntityManager provider, and the Postgres driver. -->
+        <dependency>
+            <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
+            <artifactId>applicationscourtorders-viewstore-persistence</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.gov.justice.utils</groupId>
+            <artifactId>test-utils-hibernate</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

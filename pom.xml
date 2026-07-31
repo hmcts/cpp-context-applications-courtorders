@@ -5,12 +5,12 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>17.104.0</version>
+        <version>25.104.0-M9</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
     <artifactId>applicationscourtorders-parent</artifactId>
-    <version>17.104.73-SNAPSHOT</version>
+    <version>25.104.0-M1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -22,11 +22,11 @@
         <sonar.scm.provider>git</sonar.scm.provider>
         <coredomain.version>17.104.4</coredomain.version>
         <usersgroups.version>17.104.48</usersgroups.version>
-        <referencedata.version>17.104.136</referencedata.version>
+        <referencedata.version>17.104.137</referencedata.version>
         <progression.version>17.0.277</progression.version>
         <json-transformer.version>1.0.6</json-transformer.version>
         <elasticsearch-maven-plugin.version>6.13</elasticsearch-maven-plugin.version>
-        <elasticsearch.embedded.version>7.16.2</elasticsearch.embedded.version>
+        <elasticsearch.embedded.version>9.3.3</elasticsearch.embedded.version>
         <stream-transformation-tool-anonymise.version>7.0.0</stream-transformation-tool-anonymise.version>
         <jgitflow.maven.developBranchName>main</jgitflow.maven.developBranchName>
         <sonar.coverage.exclusions>

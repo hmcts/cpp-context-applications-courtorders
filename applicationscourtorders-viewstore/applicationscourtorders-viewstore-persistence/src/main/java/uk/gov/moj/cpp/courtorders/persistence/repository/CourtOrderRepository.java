@@ -1,31 +1,68 @@
 package uk.gov.moj.cpp.courtorders.persistence.repository;
 
-import org.apache.deltaspike.data.api.EntityRepository;
-import org.apache.deltaspike.data.api.Query;
-import org.apache.deltaspike.data.api.QueryParam;
-import org.apache.deltaspike.data.api.Repository;
 import uk.gov.moj.cpp.courtorders.persistence.entity.CourtOrderEntity;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-@Repository
-public interface CourtOrderRepository extends EntityRepository<CourtOrderEntity, UUID> {
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
-    @Query("FROM CourtOrderEntity where defendantId=:defendantId and isRemoved is false and expiryDate >= :expiryDate ")
-    List<CourtOrderEntity> findByDefendantIdAndExpiryDate(@QueryParam("defendantId") final UUID defendantId, @QueryParam("expiryDate") final LocalDate expiryDate);
+/**
+ * JPA repository for {@link CourtOrderEntity}.
+ *
+ * <p>Migrated from a DeltaSpike Data {@code @Repository} interface to a concrete JPA repository as part of the
+ * Java 25 / Jakarta EE 11 upgrade — DeltaSpike is EOL and unavailable under CDI 4. The JPQL/native queries below
+ * preserve the exact semantics of the previous {@code @Query}-annotated methods.</p>
+ */
+@ApplicationScoped
+public class CourtOrderRepository {
 
+    @PersistenceContext(unitName = "applicationscourtorders-persistence-unit")
+    EntityManager entityManager;
 
-    @Query("FROM CourtOrderEntity where defendantId=:defendantId and hearingId=:hearingId and sittingDate=:sittingDate and isRemoved is false")
-    List<CourtOrderEntity> findByHearingDefendantIdAndSittingDate(@QueryParam("defendantId") final UUID defendantId,
-                                                                  @QueryParam("hearingId") final UUID hearingId,
-                                                                  @QueryParam("sittingDate") final LocalDate sittingDate);
+    public CourtOrderEntity save(final CourtOrderEntity entity) {
+        return entityManager.merge(entity);
+    }
 
-    @Query("FROM CourtOrderEntity where courtOrderId=:courtOrderId and isRemoved is false")
-    List<CourtOrderEntity> findByCourtOrderIdNotRemoved(@QueryParam("courtOrderId") final UUID courtOrderId);
+    public List<CourtOrderEntity> findByDefendantIdAndExpiryDate(final UUID defendantId, final LocalDate expiryDate) {
+        return entityManager.createQuery(
+                        "SELECT c FROM CourtOrderEntity c WHERE c.defendantId = :defendantId AND c.isRemoved = false AND c.expiryDate >= :expiryDate",
+                        CourtOrderEntity.class)
+                .setParameter("defendantId", defendantId)
+                .setParameter("expiryDate", expiryDate)
+                .getResultList();
+    }
 
-    @Query(value = "select * from court_order c, json_array_elements(payload\\:\\:json ->'courtOrderOffences') courtOffence where courtOffence ->>'prosecutionCaseId' = :caseId " +
-            "and defendant_id = :defendantId and is_removed is false", isNative = true)
-    List<CourtOrderEntity> findByCaseAndDefendantId(@QueryParam("caseId") final String caseId, @QueryParam("defendantId") final UUID defendantId);
+    public List<CourtOrderEntity> findByHearingDefendantIdAndSittingDate(final UUID defendantId,
+                                                                         final UUID hearingId,
+                                                                         final LocalDate sittingDate) {
+        return entityManager.createQuery(
+                        "SELECT c FROM CourtOrderEntity c WHERE c.defendantId = :defendantId AND c.hearingId = :hearingId AND c.sittingDate = :sittingDate AND c.isRemoved = false",
+                        CourtOrderEntity.class)
+                .setParameter("defendantId", defendantId)
+                .setParameter("hearingId", hearingId)
+                .setParameter("sittingDate", sittingDate)
+                .getResultList();
+    }
+
+    public List<CourtOrderEntity> findByCourtOrderIdNotRemoved(final UUID courtOrderId) {
+        return entityManager.createQuery(
+                        "SELECT c FROM CourtOrderEntity c WHERE c.courtOrderId = :courtOrderId AND c.isRemoved = false",
+                        CourtOrderEntity.class)
+                .setParameter("courtOrderId", courtOrderId)
+                .getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<CourtOrderEntity> findByCaseAndDefendantId(final String caseId, final UUID defendantId) {
+        return entityManager.createNativeQuery(
+                        "select * from court_order c, json_array_elements(payload::json ->'courtOrderOffences') courtOffence where courtOffence ->>'prosecutionCaseId' = :caseId and defendant_id = :defendantId and is_removed is false",
+                        CourtOrderEntity.class)
+                .setParameter("caseId", caseId)
+                .setParameter("defendantId", defendantId)
+                .getResultList();
+    }
 }

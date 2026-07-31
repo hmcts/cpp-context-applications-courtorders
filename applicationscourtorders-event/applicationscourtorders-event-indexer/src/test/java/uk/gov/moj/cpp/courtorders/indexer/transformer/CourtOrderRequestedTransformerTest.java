@@ -15,10 +15,10 @@ import uk.gov.justice.services.unifiedsearch.client.validation.JsonDocumentValid
 import java.io.ByteArrayInputStream;
 import java.util.Map;
 
-import javax.inject.Inject;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonString;
+import jakarta.inject.Inject;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonString;
 
 import com.bazaarvoice.jolt.JsonUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -65,7 +65,7 @@ public class CourtOrderRequestedTransformerTest {
         final JsonObject inputJson = readJson("/applicationscourtorders.event.court-order-requested.json");
         final DocumentContext inputCourtOrder = JsonPath.parse(inputJson);
         final Map<String, Object> input = JsonUtils.jsonToMap(new ByteArrayInputStream(inputJson.toString().getBytes()));
-        final javax.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
+        final jakarta.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
 
         jsonValidator.validate(output, "/json/schema/crime-case-index-schema.json");
 
@@ -110,7 +110,7 @@ public class CourtOrderRequestedTransformerTest {
         final JsonObject inputJson = readJson("/applicationscourtorders.event.court-order-requested-with-plea-verdict.json");
         final DocumentContext inputCourtOrder = JsonPath.parse(inputJson);
         final Map<String, Object> input = JsonUtils.jsonToMap(new ByteArrayInputStream(inputJson.toString().getBytes()));
-        final javax.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
+        final jakarta.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
 
         jsonValidator.validate(output, "/json/schema/crime-case-index-schema.json");
 
@@ -140,7 +140,7 @@ public class CourtOrderRequestedTransformerTest {
         final JsonObject inputJson = readJson("/applicationscourtorders.event.court-order-requested-multiple.json");
         final DocumentContext inputCourtOrder = JsonPath.parse(inputJson);
         final Map<String, Object> input = JsonUtils.jsonToMap(new ByteArrayInputStream(inputJson.toString().getBytes()));
-        final javax.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
+        final jakarta.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
 
         jsonValidator.validate(output, "/json/schema/crime-case-index-schema.json");
 
@@ -202,7 +202,7 @@ public class CourtOrderRequestedTransformerTest {
         final JsonObject inputJson = readJson("/applicationscourtorders.event.court-order-requested-multiple-with-same-prosecution-case.json");
         final DocumentContext inputCourtOrder = JsonPath.parse(inputJson);
         final Map<String, Object> input = JsonUtils.jsonToMap(new ByteArrayInputStream(inputJson.toString().getBytes()));
-        final javax.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
+        final jakarta.json.JsonObject output = objectToJsonObjectConvert1.convert(courtOrderRequestedTransformer.transform(input));
 
         jsonValidator.validate(output, "/json/schema/crime-case-index-schema.json");
 

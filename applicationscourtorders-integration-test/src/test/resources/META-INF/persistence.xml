@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <!-- Real-Postgres test persistence unit for CourtOrderRepositoryIT. Targets the stack-provisioned
+         `applicationscourtordersviewstore` DB (production Liquibase schema applied by the docker stack /
+         runIntegrationTests.sh). Tests roll back per test (HibernateTestEntityManagerProvider), so nothing
+         is persisted. -->
+    <persistence-unit name="applicationscourtorders-test-persistence-unit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- CourtOrderEntity comes from the applicationscourtorders-viewstore-persistence dependency JAR
+             (not this module's ../classes), so it is listed explicitly. -->
+        <class>uk.gov.moj.cpp.courtorders.persistence.entity.CourtOrderEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:postgresql://localhost:5432/applicationscourtordersviewstore"/>
+            <property name="jakarta.persistence.jdbc.user" value="applicationscourtorders"/>
+            <property name="jakarta.persistence.jdbc.password" value="applicationscourtorders"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <!-- Schema is the production Liquibase schema; Hibernate must not touch it. -->
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+            <property name="hibernate.show_sql" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
