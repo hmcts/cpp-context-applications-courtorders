@@ -38,7 +38,7 @@ public class CourtOrderRepositoryTest {
         courtOrderEntity1.setId(UUID.randomUUID());
         courtOrderEntity1.setCourtOrderId(courtOrderId1);
         courtOrderEntity1.setDefendantId(defendantId);
-        courtOrderEntity1.setExpiryDate(LocalDate.now());
+        courtOrderEntity1.setExpiryDate(LocalDate.now().minusDays(2));
         courtOrderRepository.save(courtOrderEntity1);
 
         courtOrderEntity2.setId(UUID.randomUUID());
@@ -50,7 +50,7 @@ public class CourtOrderRepositoryTest {
         courtOrderEntity3.setId(id);
         courtOrderEntity3.setCourtOrderId(courtOrderId3);
         courtOrderEntity3.setDefendantId(defendantId);
-        courtOrderEntity3.setExpiryDate(LocalDate.now().plusDays(1));
+        courtOrderEntity3.setExpiryDate(LocalDate.now());
         courtOrderEntity3.setHearingId(hearingId);
         courtOrderEntity3.setSittingDate(sittingDate);
         courtOrderEntity3.setRemoved(false);
@@ -65,7 +65,7 @@ public class CourtOrderRepositoryTest {
         assertThat(result.get(0).getId().equals(id), is(true));
         assertThat(result.get(0).getCourtOrderId().equals(courtOrderId3), is(true));
         assertThat(result.get(0).getDefendantId().equals(defendantId), is(true));
-        assertThat(result.get(0).getExpiryDate().equals(LocalDate.now().plusDays(1)), is(true));
+        assertThat(result.get(0).getExpiryDate().equals(LocalDate.now()), is(true));
         assertThat(result.get(0).getHearingId().equals(hearingId), is(true));
         assertThat(result.get(0).getSittingDate().equals(sittingDate), is(true));
         assertThat(result.get(0).getPayload().equals("{}"), is(true));
