@@ -13,7 +13,7 @@ import java.util.UUID;
 @Repository
 public interface CourtOrderRepository extends EntityRepository<CourtOrderEntity, UUID> {
 
-    @Query("FROM CourtOrderEntity where defendantId=:defendantId and isRemoved is false and expiryDate > :expiryDate ")
+    @Query("FROM CourtOrderEntity where defendantId=:defendantId and isRemoved is false and expiryDate >= :expiryDate ")
     List<CourtOrderEntity> findByDefendantIdAndExpiryDate(@QueryParam("defendantId") final UUID defendantId, @QueryParam("expiryDate") final LocalDate expiryDate);
 
 
