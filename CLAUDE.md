@@ -26,7 +26,9 @@ It was rewritten to the standard Java-25 pattern (mirroring `cpp-context-listing
 - `javax.*` → `jakarta.*` across all modules (json, ws.rs, inject, jms, persistence, transaction, enterprise).
 - `javax:javaee-api` → `jakarta.platform:jakarta.jakartaee-api` in every module pom.
 - RAML client-generator plugins (`rest-client-generator-plugin`, `messaging-client-generator-plugin`) need the `jakarta.xml.bind:jakarta.xml.bind-api` (`${jakarta.xml.bind-api.raml.version}`, inherited from parent) override in their `<dependencies>` block, alongside the jakartaee-api plugin dep.
-- Parent → `service-parent-pom:25.104.0-M9`.
+- Parent → `service-parent-pom:25.104.0` (the official non-milestone release, 2026-09-08 — the whole J25 library stack is now released at `25.104.0`).
+- `coredomain.version` → `25.104.0`. This context had been left on the **Java-17** core-domain (`17.104.4`) via a pipeline "Updating develop poms back to pre merge state" commit, so it was never exercising the 25.104.x core-domain. Always use the latest core-domain unless that is impossible.
+- The context's **own** version stays on the milestone scheme (`25.104.x-M<n>-SNAPSHOT`) — these are builds for testing/QA, not releases.
 
 ## Elasticsearch 9.3.3
 
