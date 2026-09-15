@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] — Java 25 / WildFly 40 / Elasticsearch 9.3.3 (25.104.x)
 
 ### Changed
+- Updated `service-parent-pom` and `coredomain.version` to `25.104.1`, which brings Liquibase `5.0.3` and the consolidated Maven plugin versions.
 - Upgraded to the released `service-parent-pom:25.104.0-M9` (Java 25 / WildFly 40 / Jakarta EE 11), which carries the Elasticsearch `9.3.3` client via `platform-libraries M10` / `common-bom M4`.
 - Migrated `javax.*` → `jakarta.*` across all modules; `javax:javaee-api` → `jakarta.platform:jakarta.jakartaee-api`.
 - Added the `jakarta.xml.bind:jakarta.xml.bind-api` override to the RAML client-generator plugin blocks.
