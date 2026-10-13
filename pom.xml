@@ -10,7 +10,7 @@
 
     <groupId>uk.gov.moj.cpp.applications.courtorders</groupId>
     <artifactId>applicationscourtorders-parent</artifactId>
-    <version>17.104.74-SNAPSHOT</version>
+    <version>17.104.74-CIVIL-T3-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -20,7 +20,7 @@
         <sonar.jacoco.itReportPath>${project.basedir}/../target/jacoco-it.exec</sonar.jacoco.itReportPath>
         <sonar.report.export.path>sonar-report.json</sonar.report.export.path>
         <sonar.scm.provider>git</sonar.scm.provider>
-        <coredomain.version>17.104.4</coredomain.version>
+        <coredomain.version>17.104.5-CIVIL-T3-SNAPSHOT</coredomain.version>
         <usersgroups.version>17.104.48</usersgroups.version>
         <referencedata.version>17.104.137</referencedata.version>
         <progression.version>17.0.286</progression.version>
